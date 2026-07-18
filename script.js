@@ -1,132 +1,1040 @@
-/* ============================================
-   SCENES
-============================================ */
+/*==================================================
+                GOOGLE FONTS & RESET
+==================================================*/
 
-const scenes = document.querySelectorAll(".scene");
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-let currentScene = 0;
+html,
+body{
 
-function showScene(index){
-
-    scenes.forEach(scene=>{
-
-        scene.classList.remove("active");
-
-    });
-
-    scenes[index].classList.add("active");
+    width:100%;
+    height:100%;
+    overflow:hidden;
 
 }
 
-showScene(0);
+body{
 
-/* ============================================
-   TIMELINE
-============================================ */
+    font-family:'Inter',sans-serif;
 
-setTimeout(()=>{
+    background:#040714;
 
-    showScene(1);
+    color:#fff;
 
-},6000);
-
-setTimeout(()=>{
-
-    showScene(2);
-
-},12000);
-
-
-/* ============================================
-   CREATE STARS
-============================================ */
-
-const stars = document.getElementById("stars");
-
-for(let i=0;i<250;i++){
-
-    const star = document.createElement("div");
-
-    star.className = "star";
-
-    const size = Math.random()*3 + 1;
-
-    star.style.width = size+"px";
-    star.style.height = size+"px";
-
-    star.style.left = Math.random()*100+"%";
-
-    star.style.top = Math.random()*100+"%";
-
-    star.style.opacity = Math.random();
-
-    star.style.animationDuration =
-        (2+Math.random()*5)+"s";
-
-    star.style.animationDelay =
-        Math.random()*5+"s";
-
-    stars.appendChild(star);
+    position:relative;
 
 }
 
+/*==================================================
+                    VARIABLES
+==================================================*/
 
-/* ============================================
-   FLOATING PARTICLES
-============================================ */
+:root{
 
-const particleContainer =
-document.getElementById("particles");
+    --sky1:#030712;
+    --sky2:#0b1635;
+    --sky3:#241b52;
 
-function createParticle(){
-
-    const particle =
-    document.createElement("div");
-
-    particle.className="particle";
-
-    const size=Math.random()*4+2;
-
-    particle.style.width=size+"px";
-
-    particle.style.height=size+"px";
-
-    particle.style.left=Math.random()*100+"vw";
-
-    particle.style.bottom="-10px";
-
-    particle.style.animationDuration=
-    (10+Math.random()*12)+"s";
-
-    particle.style.opacity=
-    Math.random();
-
-    particleContainer.appendChild(particle);
-
-    setTimeout(()=>{
-
-        particle.remove();
-
-    },22000);
+    --pink:#ffb3d9;
+    --purple:#8d7dff;
+    --gold:#fff2c5;
 
 }
 
-setInterval(createParticle,250);
+/*==================================================
+                BACKGROUND
+==================================================*/
 
+body{
 
-/* ============================================
-   PARALLAX
-============================================ */
+    background:
 
-document.addEventListener("mousemove",(e)=>{
+    radial-gradient(circle at bottom,
+    #2c174d 0%,
+    #091325 40%,
+    #040714 100%);
 
-    const x=(e.clientX/window.innerWidth-.5)*20;
+}
 
-    const y=(e.clientY/window.innerHeight-.5)*20;
+/*==================================================
+                BREATHING SKY
+==================================================*/
 
-    document.querySelector(".aurora").style.transform=
-    `translate(${x}px,${y}px)`;
+body::before{
 
-});
+    content:"";
 
+    position:absolute;
 
+    inset:-15%;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(255,180,220,.12),
+    transparent 60%);
+
+    filter:blur(100px);
+
+    animation:skyGlow 14s ease-in-out infinite;
+
+    z-index:-5;
+
+}
+
+@keyframes skyGlow{
+
+    0%{
+
+        transform:scale(1);
+
+        opacity:.4;
+
+    }
+
+    50%{
+
+        transform:scale(1.15);
+
+        opacity:.8;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        opacity:.4;
+
+    }
+
+}
+
+/*==================================================
+                AURORA
+==================================================*/
+
+.aurora{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-4;
+
+}
+
+.aurora::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:1200px;
+
+    height:1200px;
+
+    top:-700px;
+
+    left:-300px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(170,120,255,.28),
+
+    transparent 70%);
+
+    filter:blur(120px);
+
+    animation:auroraMove 18s ease-in-out infinite alternate;
+
+}
+
+.aurora::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:1000px;
+
+    height:1000px;
+
+    bottom:-600px;
+
+    right:-250px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(255,140,210,.22),
+
+    transparent 70%);
+
+    filter:blur(120px);
+
+    animation:auroraMove2 22s ease-in-out infinite alternate;
+
+}
+
+@keyframes auroraMove{
+
+    from{
+
+        transform:translateX(-80px);
+
+    }
+
+    to{
+
+        transform:translateX(120px)
+                  translateY(60px);
+
+    }
+
+}
+
+@keyframes auroraMove2{
+
+    from{
+
+        transform:translateX(100px);
+
+    }
+
+    to{
+
+        transform:translateX(-120px)
+                  translateY(-80px);
+
+    }
+
+}
+
+/*==================================================
+                    MOON
+==================================================*/
+
+.moon{
+
+    position:absolute;
+
+    top:70px;
+
+    right:110px;
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle at 35% 35%,
+
+    #ffffff,
+
+    #fff6dd 40%,
+
+    #ffe7aa 70%,
+
+    #ffd96b);
+
+    box-shadow:
+
+    0 0 40px rgba(255,255,255,.5),
+
+    0 0 80px rgba(255,240,180,.45),
+
+    0 0 160px rgba(255,255,255,.15);
+
+    animation:moonFloat 8s ease-in-out infinite;
+
+}
+
+@keyframes moonFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==================================================
+                    STARS
+==================================================*/
+
+#stars{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-2;
+
+}
+
+/*==================================================
+                MAIN LAYOUT
+==================================================*/
+
+main{
+
+    width:100%;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/*==================================================
+                SCENES
+==================================================*/
+
+.scene{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    opacity:0;
+
+    transition:2s ease;
+
+    pointer-events:none;
+
+}
+
+.scene.active{
+
+    opacity:1;
+
+}
+
+/*==================================================
+                CONTENT
+==================================================*/
+
+.content{
+
+    width:min(850px,90%);
+
+    margin:auto;
+
+}
+
+/*==================================================
+                TYPOGRAPHY
+==================================================*/
+
+.small-title{
+
+    display:inline-block;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:15px;
+
+    letter-spacing:8px;
+
+    text-transform:uppercase;
+
+    color:rgba(255,255,255,.75);
+
+    margin-bottom:30px;
+
+    animation:fadeUp 2s ease;
+
+}
+
+h1,
+h2,
+h3{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-weight:500;
+
+    line-height:1.15;
+
+    text-shadow:
+
+        0 0 15px rgba(255,255,255,.18),
+
+        0 0 40px rgba(255,190,230,.12);
+
+}
+
+h1{
+
+    font-size:clamp(70px,9vw,120px);
+
+    color:#fff;
+
+}
+
+h2{
+
+    font-size:clamp(58px,7vw,92px);
+
+    color:#fff5fa;
+
+}
+
+.birthday{
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #ffe8a3,
+        #ffd1e8
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+}
+
+h3{
+
+    margin-top:25px;
+
+    font-size:clamp(34px,4vw,52px);
+
+    color:#ffe4f2;
+
+}
+
+p{
+
+    margin-top:22px;
+
+    font-size:clamp(18px,2vw,24px);
+
+    color:rgba(255,255,255,.82);
+
+    letter-spacing:1px;
+
+    line-height:1.8;
+
+}
+
+/*==================================================
+            SCENE FADE ANIMATION
+==================================================*/
+
+.scene.active .content{
+
+    animation:cinematicReveal 2s ease both;
+
+}
+
+@keyframes cinematicReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+        filter:blur(18px);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+        filter:blur(0);
+
+    }
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==================================================
+                GLOWING HEART
+==================================================*/
+
+.heart{
+
+    position:relative;
+
+    width:90px;
+
+    height:90px;
+
+    margin:55px auto 0;
+
+    transform:rotate(-45deg);
+
+    background:linear-gradient(
+        135deg,
+        #ff7cab,
+        #ff4d88
+    );
+
+    animation:heartbeat 2s ease-in-out infinite;
+
+    box-shadow:
+
+        0 0 25px rgba(255,105,180,.45),
+
+        0 0 60px rgba(255,105,180,.35);
+
+}
+
+.heart::before,
+.heart::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:inherit;
+
+}
+
+.heart::before{
+
+    top:-45px;
+
+    left:0;
+
+}
+
+.heart::after{
+
+    left:45px;
+
+    top:0;
+
+}
+
+@keyframes heartbeat{
+
+    0%,100%{
+
+        transform:rotate(-45deg) scale(1);
+
+    }
+
+    25%{
+
+        transform:rotate(-45deg) scale(1.08);
+
+    }
+
+    50%{
+
+        transform:rotate(-45deg) scale(.98);
+
+    }
+
+    75%{
+
+        transform:rotate(-45deg) scale(1.12);
+
+    }
+
+}
+
+/*==================================================
+            SOFT LIGHT AROUND TEXT
+==================================================*/
+
+.content::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:700px;
+
+    height:700px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        rgba(255,255,255,.05),
+        transparent 70%
+    );
+
+    filter:blur(40px);
+
+    z-index:-1;
+
+}
+
+/*==================================================
+            RESPONSIVE
+==================================================*/
+
+@media(max-width:768px){
+
+    .small-title{
+
+        letter-spacing:4px;
+
+        font-size:12px;
+
+    }
+
+    h1{
+
+        font-size:60px;
+
+    }
+
+    h2{
+
+        font-size:46px;
+
+    }
+
+    h3{
+
+        font-size:32px;
+
+    }
+
+    p{
+
+        font-size:18px;
+
+        padding:0 10px;
+
+    }
+
+    .heart{
+
+        width:65px;
+        height:65px;
+
+    }
+
+    .heart::before,
+    .heart::after{
+
+        width:65px;
+        height:65px;
+
+    }
+
+    .heart::before{
+
+        top:-32px;
+
+    }
+
+    .heart::after{
+
+        left:32px;
+
+    }
+
+}
+/*==================================================
+            SHOOTING STAR
+==================================================*/
+
+.shooting-star{
+
+    position:absolute;
+
+    top:18%;
+
+    left:-250px;
+
+    width:220px;
+
+    height:3px;
+
+    background:linear-gradient(
+        90deg,
+        rgba(255,255,255,1),
+        rgba(255,255,255,.8),
+        transparent
+    );
+
+    border-radius:999px;
+
+    filter:drop-shadow(0 0 12px #ffffff);
+
+    animation:shootingStar 8s linear infinite;
+
+}
+
+.shooting-star span{
+
+    position:absolute;
+
+    right:-8px;
+    top:-4px;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    box-shadow:
+        0 0 12px #fff,
+        0 0 30px #fff;
+
+}
+
+@keyframes shootingStar{
+
+    0%{
+
+        transform:
+            translate(-250px,-120px)
+            rotate(28deg);
+
+        opacity:0;
+
+    }
+
+    10%{
+
+        opacity:1;
+
+    }
+
+    85%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            translate(1800px,950px)
+            rotate(28deg);
+
+        opacity:0;
+
+    }
+
+}
+
+/*==================================================
+            FLOATING PARTICLES
+==================================================*/
+
+#particles{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+}
+
+.particle{
+
+    position:absolute;
+
+    width:3px;
+
+    height:3px;
+
+    border-radius:50%;
+
+    background:white;
+
+    opacity:.6;
+
+    animation:floatParticle linear infinite;
+
+}
+
+@keyframes floatParticle{
+
+    from{
+
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity:.2;
+
+    }
+
+    50%{
+
+        opacity:.9;
+
+    }
+
+    to{
+
+        transform:
+            translateY(-120vh)
+            scale(1.3);
+
+        opacity:0;
+
+    }
+
+}
+
+/*==================================================
+            STAR SHIMMER
+==================================================*/
+
+.star{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    animation:starTwinkle ease-in-out infinite;
+
+}
+
+@keyframes starTwinkle{
+
+    0%{
+
+        opacity:.2;
+
+        transform:scale(.8);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:scale(1.5);
+
+    }
+
+    100%{
+
+        opacity:.2;
+
+        transform:scale(.8);
+
+    }
+
+}
+
+/*==================================================
+            SMOOTH BACKGROUND MOTION
+==================================================*/
+
+.sky{
+
+    animation:slowZoom 25s ease-in-out infinite alternate;
+
+}
+
+@keyframes slowZoom{
+
+    from{
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        transform:scale(1.05);
+
+    }
+
+}
+
+/*==================================================
+            CONTENT GLOW
+==================================================*/
+
+.content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/*==================================================
+            FADE OUT SUPPORT
+==================================================*/
+
+.fade-out{
+
+    opacity:0 !important;
+
+    transform:translateY(-20px);
+
+    transition:1.5s;
+
+}
+
+/*==================================================
+            RESPONSIVE
+==================================================*/
+
+@media(max-width:768px){
+
+    .moon{
+
+        width:100px;
+
+        height:100px;
+
+        top:30px;
+
+        right:30px;
+
+    }
+
+    .shooting-star{
+
+        width:140px;
+
+    }
+
+    body{
+
+        background:radial-gradient(circle at bottom,
+        #3d1a6e 0%,
+        #12204a 45%,
+        #040714 100%);
+
+    }
+
+    body::before{
+
+        opacity:1;
+
+        background:radial-gradient(circle,
+        rgba(255,140,210,.35),
+        transparent 60%);
+
+    }
+
+    .aurora::before{
+
+        width:600px;
+
+        height:600px;
+
+        top:-200px;
+
+        left:-150px;
+
+        background:radial-gradient(circle,
+        rgba(170,120,255,.55),
+        transparent 70%);
+
+        filter:blur(60px);
+
+    }
+
+    .aurora::after{
+
+        width:500px;
+
+        height:500px;
+
+        bottom:-200px;
+
+        right:-100px;
+
+        background:radial-gradient(circle,
+        rgba(255,100,190,.5),
+        transparent 70%);
+
+        filter:blur(60px);
+
+    }
+
+}
