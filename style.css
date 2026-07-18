@@ -982,4 +982,59 @@ p{
 
     }
 
+    body{
+
+        background:radial-gradient(circle at bottom,
+        #3d1a6e 0%,
+        #12204a 45%,
+        #040714 100%);
+
+    }
+
+    body::before{
+
+        opacity:1;
+
+        background:radial-gradient(circle,
+        rgba(255,140,210,.35),
+        transparent 60%);
+
+    }
+
+    .aurora::before{
+
+        width:600px;
+
+        height:600px;
+
+        top:-200px;
+
+        left:-150px;
+
+        background:radial-gradient(circle,
+        rgba(170,120,255,.55),
+        transparent 70%);
+
+        filter:blur(60px);
+
+    }
+
+    .aurora::after{
+
+        width:500px;
+
+        height:500px;
+
+        bottom:-200px;
+
+        right:-100px;
+
+        background:radial-gradient(circle,
+        rgba(255,100,190,.5),
+        transparent 70%);
+
+        filter:blur(60px);
+
+    }
+
 }
