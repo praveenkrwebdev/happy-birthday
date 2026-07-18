@@ -53,9 +53,9 @@ body{
 
     background:
 
-    radial-gradient(circle at bottom,
+    radial-gradient(ellipse 160% 80% at bottom,
     #2c174d 0%,
-    #091325 40%,
+    #091325 45%,
     #040714 100%);
 
 }
@@ -70,7 +70,7 @@ body::before{
 
     position:absolute;
 
-    inset:-15%;
+    inset:0;
 
     background:
 
@@ -651,62 +651,72 @@ p{
 
     .small-title{
 
-        letter-spacing:4px;
+        letter-spacing:3px;
 
-        font-size:12px;
+        font-size:10px;
+
+        margin-bottom:16px;
 
     }
 
     h1{
 
-        font-size:60px;
+        font-size:42px;
 
     }
 
     h2{
 
-        font-size:46px;
+        font-size:34px;
 
     }
 
     h3{
 
-        font-size:32px;
+        font-size:22px;
+
+        margin-top:14px;
 
     }
 
     p{
 
-        font-size:18px;
+        font-size:14px;
 
-        padding:0 10px;
+        padding:0 16px;
+
+        margin-top:12px;
+
+        line-height:1.6;
 
     }
 
     .heart{
 
-        width:65px;
-        height:65px;
+        width:50px;
+        height:50px;
+
+        margin-top:30px;
 
     }
 
     .heart::before,
     .heart::after{
 
-        width:65px;
-        height:65px;
+        width:50px;
+        height:50px;
 
     }
 
     .heart::before{
 
-        top:-32px;
+        top:-25px;
 
     }
 
     .heart::after{
 
-        left:32px;
+        left:25px;
 
     }
 
@@ -876,6 +886,12 @@ p{
 
     animation:starTwinkle ease-in-out infinite;
 
+    will-change:opacity,transform;
+
+    min-width:2px;
+
+    min-height:2px;
+
 }
 
 @keyframes starTwinkle{
@@ -984,9 +1000,9 @@ p{
 
     body{
 
-        background:radial-gradient(circle at bottom,
+        background:radial-gradient(ellipse 200% 90% at bottom,
         #3d1a6e 0%,
-        #12204a 45%,
+        #12204a 50%,
         #040714 100%);
 
     }
