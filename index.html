@@ -1,42 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Horn OK Please — Highway Music</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-html,body{
+html,
+body{
   width:100%;
   min-height:100%;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
   background:#070707;
   color:#fff;
+
   overflow-x:hidden;
 }
 
-/* ================= HEADER ================= */
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 header{
   width:100%;
   padding:18px 24px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   border-bottom:1px solid rgba(255,255,255,.08);
-  background:rgba(0,0,0,.8);
+
+  background:rgba(0,0,0,.82);
+
   position:relative;
-  z-index:10;
+  z-index:20;
+
+  backdrop-filter:blur(10px);
 }
 
 .logo{
@@ -54,59 +79,156 @@ header{
   color:#aaa;
 }
 
-/* ================= HERO ================= */
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
+
   min-height:72vh;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   padding:50px 20px;
+
   position:relative;
+
   overflow:hidden;
+
+  isolation:isolate;
+
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,.38),
+      rgba(0,0,0,.68)
+    ),
+    url("hero-desktop.webp");
+
+  background-size:cover;
+
+  background-position:center;
+
+  background-repeat:no-repeat;
 }
 
-.hero:before{
+
+/* Main orange glow */
+
+.hero::before{
+
   content:"";
+
   position:absolute;
-  width:700px;
-  height:700px;
-  background:radial-gradient(
-    circle,
-    rgba(255,122,0,.16),
-    transparent 65%
-  );
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+
+  inset:0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,122,0,.14),
+      transparent 55%
+    );
+
+  z-index:0;
+
   pointer-events:none;
 }
 
+
+/* Bottom fade */
+
+.hero::after{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:180px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      #070707
+    );
+
+  z-index:0;
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
 .hero-content{
+
   position:relative;
-  z-index:2;
+
+  z-index:5;
+
   max-width:850px;
+
+  padding-bottom:50px;
 }
 
 .badge{
+
   display:inline-block;
-  padding:8px 14px;
-  border:1px solid rgba(255,122,0,.35);
+
+  padding:8px 16px;
+
+  border:1px solid rgba(255,122,0,.45);
+
   border-radius:999px;
-  color:#ff9d4d;
+
+  color:#ffad68;
+
+  background:rgba(0,0,0,.35);
+
+  backdrop-filter:blur(8px);
+
   font-size:12px;
+
+  font-weight:700;
+
   letter-spacing:2px;
-  text-transform:uppercase;
-  margin-bottom:20px;
+
+  margin-bottom:22px;
+
+  box-shadow:
+    0 0 30px rgba(255,122,0,.08);
 }
 
 h1{
-  font-size:clamp(42px,8vw,90px);
+
+  font-size:
+    clamp(
+      42px,
+      8vw,
+      90px
+    );
+
   line-height:.95;
+
   font-weight:900;
+
   letter-spacing:-4px;
+
   text-transform:uppercase;
+
+  text-shadow:
+    0 5px 30px rgba(0,0,0,.75);
 }
 
 h1 span{
@@ -114,143 +236,561 @@ h1 span{
 }
 
 .subtitle{
-  margin-top:22px;
-  color:#aaa;
+
+  margin-top:24px;
+
+  color:#eee;
+
   font-size:17px;
-  line-height:1.7;
+
+  line-height:1.8;
+
+  max-width:700px;
+
+  margin-left:auto;
+  margin-right:auto;
+
+  text-shadow:
+    0 2px 15px rgba(0,0,0,.95);
 }
 
-/* ================= MUSIC PANEL ================= */
+
+/* =========================================================
+   TRUCK
+========================================================= */
+
+.hero-truck{
+
+  position:absolute;
+
+  left:-200px;
+
+  bottom:55px;
+
+  font-size:95px;
+
+  z-index:3;
+
+  filter:
+    drop-shadow(
+      0 12px 18px rgba(0,0,0,.8)
+    )
+    drop-shadow(
+      0 0 25px rgba(255,122,0,.20)
+    );
+
+  animation:
+    truckDrive
+    22s
+    linear
+    infinite;
+
+  pointer-events:none;
+}
+
+.hero-truck::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:190px;
+
+  height:25px;
+
+  left:8px;
+
+  bottom:-6px;
+
+  background:
+    rgba(255,122,0,.30);
+
+  filter:blur(18px);
+
+  border-radius:50%;
+}
+
+
+/* =========================================================
+   HORN
+========================================================= */
+
+.hero-horn{
+
+  position:absolute;
+
+  right:8%;
+
+  top:17%;
+
+  font-size:65px;
+
+  z-index:2;
+
+  opacity:.22;
+
+  transform:rotate(-12deg);
+
+  filter:
+    drop-shadow(
+      0 0 20px rgba(255,122,0,.55)
+    );
+
+  animation:
+    hornFloat
+    4s
+    ease-in-out
+    infinite;
+
+  pointer-events:none;
+}
+
+.hero-horn::after{
+
+  content:")))" ;
+
+  position:absolute;
+
+  left:65px;
+
+  top:-5px;
+
+  font-size:34px;
+
+  font-weight:900;
+
+  color:#ff7a00;
+
+  letter-spacing:-7px;
+
+  opacity:.7;
+
+  animation:
+    hornSound
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* =========================================================
+   HORN TEXT
+========================================================= */
+
+.horn-text{
+
+  position:absolute;
+
+  right:10%;
+
+  top:30%;
+
+  color:#ff7a00;
+
+  font-size:12px;
+
+  font-weight:900;
+
+  letter-spacing:3px;
+
+  opacity:.45;
+
+  transform:rotate(-8deg);
+
+  z-index:2;
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   HIGHWAY ROAD
+========================================================= */
+
+.hero-road{
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:95px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0,0,0,.15) 15%,
+      rgba(0,0,0,.92) 75%
+    );
+
+  z-index:1;
+
+  pointer-events:none;
+}
+
+
+/* Road markings */
+
+.hero-road::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  top:62px;
+
+  height:5px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+
+      transparent 0,
+      transparent 45px,
+
+      rgba(255,255,255,.75) 45px,
+      rgba(255,255,255,.75) 105px,
+
+      transparent 105px,
+      transparent 165px
+    );
+
+  animation:
+    roadMove
+    1.2s
+    linear
+    infinite;
+}
+
+
+/* Road orange glow */
+
+.hero-road::after{
+
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+
+  top:48px;
+
+  width:80%;
+
+  height:35px;
+
+  transform:translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,122,0,.24),
+      transparent 70%
+    );
+
+  filter:blur(12px);
+}
+
+
+/* =========================================================
+   HIGHWAY LIGHTS
+========================================================= */
+
+.highway-lights{
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  bottom:98px;
+
+  height:3px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+
+      transparent 0,
+      transparent 70px,
+
+      rgba(255,122,0,.8) 70px,
+      rgba(255,122,0,.8) 74px,
+
+      transparent 74px,
+      transparent 150px
+    );
+
+  opacity:.55;
+
+  animation:
+    lightsMove
+    3s
+    linear
+    infinite;
+
+  pointer-events:none;
+
+  z-index:2;
+}
+
+
+/* =========================================================
+   MUSIC SECTION
+========================================================= */
 
 .music-wrap{
-  padding:0 20px 80px;
+
+  padding:
+    0
+    20px
+    80px;
+
+  position:relative;
+
+  z-index:10;
 }
 
+
+/* =========================================================
+   PLAYER PANEL
+========================================================= */
+
 .panel{
+
   max-width:760px;
-  margin:-20px auto 0;
+
+  margin:
+    -20px
+    auto
+    0;
+
   position:relative;
+
   z-index:5;
-  background:#111;
-  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    rgba(17,17,17,.94);
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
   border-radius:24px;
+
   padding:28px;
-  box-shadow:0 20px 80px rgba(0,0,0,.5);
+
+  box-shadow:
+    0 20px 80px rgba(0,0,0,.55);
+
   transition:.3s ease;
+
+  backdrop-filter:blur(12px);
 }
 
 .panel.playing{
-  border-color:rgba(255,122,0,.4);
+
+  border-color:
+    rgba(255,122,0,.4);
+
   box-shadow:
+
     0 20px 80px rgba(0,0,0,.55),
+
     0 0 50px rgba(255,122,0,.08);
 }
 
+
+/* =========================================================
+   NOW PLAYING
+========================================================= */
+
 .now-playing{
+
   display:flex;
+
   align-items:center;
+
   gap:18px;
 }
 
 .cover{
+
   width:72px;
   height:72px;
+
   border-radius:18px;
+
   background:
-    linear-gradient(135deg,#ff7a00,#ff3d00);
+    linear-gradient(
+      135deg,
+      #ff7a00,
+      #ff3d00
+    );
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   font-size:30px;
+
   flex:none;
+
+  box-shadow:
+    0 10px 30px
+    rgba(255,90,0,.20);
 }
 
 .info{
+
   min-width:0;
+
   flex:1;
 }
 
 .song{
+
   font-size:20px;
+
   font-weight:800;
+
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
 }
 
 .artist{
+
   color:#999;
+
   margin-top:5px;
+
   font-size:14px;
 }
 
-/* ================= PROGRESS ================= */
+
+/* =========================================================
+   PROGRESS
+========================================================= */
 
 .progress-area{
   margin-top:28px;
 }
 
 .track{
+
   width:100%;
+
   height:6px;
+
   border-radius:99px;
+
   background:#292929;
+
   cursor:pointer;
+
   overflow:hidden;
 }
 
 .fill{
+
   height:100%;
+
   width:0%;
+
   background:#ff7a00;
+
   border-radius:inherit;
-  transition:width .15s linear;
+
+  transition:
+    width .15s linear;
 }
 
 .time-row{
+
   display:flex;
+
   justify-content:space-between;
+
   margin-top:8px;
+
   font-size:11px;
+
   color:#777;
 }
 
-/* ================= CONTROLS ================= */
+
+/* =========================================================
+   CONTROLS
+========================================================= */
 
 .controls{
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   gap:16px;
+
   margin-top:25px;
 }
 
 .control{
+
   width:48px;
   height:48px;
+
   border-radius:50%;
-  border:1px solid rgba(255,255,255,.12);
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
   background:#191919;
+
   color:#fff;
+
   cursor:pointer;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   font-size:18px;
+
   transition:.2s ease;
 }
 
 .control:hover{
+
   background:#242424;
-  transform:translateY(-2px);
+
+  transform:
+    translateY(-2px);
 }
 
 .control.main{
+
   width:62px;
   height:62px;
+
   background:#ff7a00;
+
   border-color:#ff7a00;
+
   color:#000;
+
   font-size:22px;
 }
 
@@ -258,35 +798,63 @@ h1 span{
   background:#ff8c24;
 }
 
-/* ================= YOUTUBE ================= */
+
+/* =========================================================
+   YOUTUBE PLAYER
+========================================================= */
 
 .youtube-player{
+
   position:absolute;
+
   width:1px;
   height:1px;
+
   left:-10000px;
   top:-10000px;
+
   opacity:0;
+
   pointer-events:none;
 }
 
-/* ================= FOOTER ================= */
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
-  padding:40px 20px 60px;
+
+  padding:
+    40px
+    20px
+    60px;
+
   text-align:center;
+
   color:#555;
+
   font-size:12px;
 }
 
-/* ================= PLAYING ANIMATION ================= */
+
+/* =========================================================
+   PLAYING ANIMATION
+========================================================= */
 
 body.playing .cover{
-  animation:coverPulse 1.8s ease-in-out infinite;
+
+  animation:
+    coverPulse
+    1.8s
+    ease-in-out
+    infinite;
 }
 
 @keyframes coverPulse{
-  0%,100%{
+
+  0%,
+  100%{
     transform:scale(1);
   }
 
@@ -295,7 +863,132 @@ body.playing .cover{
   }
 }
 
-/* ================= RESPONSIVE ================= */
+
+/* =========================================================
+   TRUCK ANIMATION
+========================================================= */
+
+@keyframes truckDrive{
+
+  0%{
+    transform:
+      translateX(0)
+      translateY(0);
+  }
+
+  25%{
+    transform:
+      translateX(25vw)
+      translateY(-2px);
+  }
+
+  50%{
+    transform:
+      translateX(50vw)
+      translateY(0);
+  }
+
+  75%{
+    transform:
+      translateX(75vw)
+      translateY(-2px);
+  }
+
+  100%{
+    transform:
+      translateX(
+        calc(100vw + 220px)
+      )
+      translateY(0);
+  }
+}
+
+
+/* =========================================================
+   HORN FLOAT
+========================================================= */
+
+@keyframes hornFloat{
+
+  0%,
+  100%{
+    transform:
+      rotate(-12deg)
+      translateY(0);
+  }
+
+  50%{
+    transform:
+      rotate(-8deg)
+      translateY(-10px);
+  }
+}
+
+
+/* =========================================================
+   HORN SOUND
+========================================================= */
+
+@keyframes hornSound{
+
+  0%{
+    opacity:.1;
+
+    transform:
+      translateX(0);
+  }
+
+  50%{
+    opacity:.8;
+
+    transform:
+      translateX(12px);
+  }
+
+  100%{
+    opacity:.1;
+
+    transform:
+      translateX(25px);
+  }
+}
+
+
+/* =========================================================
+   ROAD MOVEMENT
+========================================================= */
+
+@keyframes roadMove{
+
+  from{
+    background-position:0 0;
+  }
+
+  to{
+    background-position:-165px 0;
+  }
+}
+
+
+/* =========================================================
+   LIGHT MOVEMENT
+========================================================= */
+
+@keyframes lightsMove{
+
+  from{
+    background-position:0 0;
+  }
+
+  to{
+    background-position:-300px 0;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:600px){
 
@@ -303,61 +996,257 @@ body.playing .cover{
     padding:16px;
   }
 
+
   .hero{
+
     min-height:65vh;
+
+    padding:
+      40px
+      16px;
+
+    background-image:
+
+      linear-gradient(
+        rgba(0,0,0,.40),
+        rgba(0,0,0,.68)
+      ),
+
+      url("hero-mobile.webp");
+
+    background-position:center;
+
+    background-size:cover;
   }
+
+
+  .hero-content{
+    padding-bottom:30px;
+  }
+
 
   h1{
     letter-spacing:-2px;
   }
 
+
+  .subtitle{
+
+    font-size:15px;
+
+    line-height:1.7;
+  }
+
+
   .panel{
+
     padding:20px;
+
     border-radius:20px;
   }
 
+
   .cover{
+
     width:60px;
     height:60px;
+
+    font-size:25px;
   }
+
 
   .song{
     font-size:17px;
   }
 
+
+  .hero-truck{
+
+    font-size:65px;
+
+    bottom:42px;
+  }
+
+
+  .hero-horn{
+
+    right:5%;
+
+    top:14%;
+
+    font-size:42px;
+
+    opacity:.15;
+  }
+
+
+  .hero-horn::after{
+
+    left:42px;
+
+    font-size:24px;
+  }
+
+
+  .horn-text{
+
+    right:7%;
+
+    top:25%;
+
+    font-size:9px;
+  }
+
+
+  .hero-road{
+    height:70px;
+  }
+
+
+  .hero-road::before{
+    top:48px;
+  }
+
+
+  .highway-lights{
+    bottom:72px;
+  }
+
 }
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  .hero-truck,
+  .hero-horn,
+  .hero-horn::after,
+  .hero-road::before,
+  .highway-lights,
+  body.playing .cover{
+
+    animation:none;
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
 <header>
+
   <div class="logo">
-    HORN <span>OK</span> PLEASE
+
+    HORN
+    <span>OK</span>
+    PLEASE
+
   </div>
 
-  <div class="clock" id="clock">
+
+  <div
+    class="clock"
+    id="clock"
+  >
     12:00 am
   </div>
+
 </header>
 
 
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
 <section class="hero">
+
+
+  <!-- Moving truck -->
+
+  <div
+    class="hero-truck"
+    aria-hidden="true"
+  >
+    🚛
+  </div>
+
+
+  <!-- Horn -->
+
+  <div
+    class="hero-horn"
+    aria-hidden="true"
+  >
+    📯
+  </div>
+
+
+  <!-- Horn text -->
+
+  <div
+    class="horn-text"
+    aria-hidden="true"
+  >
+    HORN PLEASE
+  </div>
+
+
+  <!-- Highway road -->
+
+  <div
+    class="hero-road"
+    aria-hidden="true"
+  ></div>
+
+
+  <!-- Highway lights -->
+
+  <div
+    class="highway-lights"
+    aria-hidden="true"
+  ></div>
+
+
+  <!-- Hero content -->
 
   <div class="hero-content">
 
+
     <div class="badge">
-      Highway Music
+      हाईवे म्यूज़िक
     </div>
 
+
     <h1>
-      HORN <span>OK</span><br>
+
+      HORN
+      <span>OK</span>
+      <br>
       PLEASE
+
     </h1>
 
+
     <p class="subtitle">
-      Old-school Bollywood songs for long highway drives,
-      roadside chai and endless Indian roads.
+
+      लंबी हाईवे ड्राइव,
+      सड़क किनारे की चाय
+      और पुराने बॉलीवुड गानों
+      के साथ सफ़र का मज़ा।
+
     </p>
 
   </div>
@@ -365,23 +1254,43 @@ body.playing .cover{
 </section>
 
 
+
+<!-- =======================================================
+     MUSIC PLAYER
+======================================================= -->
+
 <section class="music-wrap">
 
-  <div class="panel" id="panel">
+
+  <div
+    class="panel"
+    id="panel"
+  >
+
 
     <div class="now-playing">
+
 
       <div class="cover">
         🎵
       </div>
 
+
       <div class="info">
 
-        <div class="song" id="song">
+
+        <div
+          class="song"
+          id="song"
+        >
           Mujhse Mohabbat Ka
         </div>
 
-        <div class="artist" id="artist">
+
+        <div
+          class="artist"
+          id="artist"
+        >
           Kumar Sanu
         </div>
 
@@ -390,32 +1299,51 @@ body.playing .cover{
     </div>
 
 
+
+    <!-- Progress -->
+
     <div class="progress-area">
 
-      <div class="track" id="track">
 
-        <div class="fill" id="fill"></div>
+      <div
+        class="track"
+        id="track"
+      >
+
+        <div
+          class="fill"
+          id="fill"
+        ></div>
 
       </div>
 
+
       <div class="time-row">
 
-        <span id="cur">0:00</span>
+        <span id="cur">
+          0:00
+        </span>
 
-        <span id="dur">0:00</span>
+        <span id="dur">
+          0:00
+        </span>
 
       </div>
 
     </div>
 
 
+
+    <!-- Controls -->
+
     <div class="controls">
+
 
       <button
         class="control"
         id="prev"
         type="button"
-        aria-label="Previous song"
+        aria-label="पिछला गाना"
       >
         ⏮
       </button>
@@ -425,7 +1353,7 @@ body.playing .cover{
         class="control main"
         id="play"
         type="button"
-        aria-label="Play or pause"
+        aria-label="गाना चलाएं या रोकें"
       >
         ▶
       </button>
@@ -435,7 +1363,7 @@ body.playing .cover{
         class="control"
         id="next"
         type="button"
-        aria-label="Next song"
+        aria-label="अगला गाना"
       >
         ⏭
       </button>
@@ -447,16 +1375,24 @@ body.playing .cover{
 </section>
 
 
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
 <footer>
-  Drive safe. Enjoy the music. 🚚
+
+  सुरक्षित सफ़र करें।
+  संगीत का आनंद लें। 🚛🎵
+
 </footer>
 
 
-<!--
-  IMPORTANT:
-  The iframe is intentionally hidden because the custom player UI
-  controls the YouTube player.
--->
+
+<!-- =======================================================
+     YOUTUBE PLAYER
+======================================================= -->
+
 <div
   id="yt"
   class="youtube-player"
@@ -464,123 +1400,109 @@ body.playing .cover{
 ></div>
 
 
+
 <script>
 
 /* =========================================================
    SONG LIST
-   =========================================================
-
-   These are individual YouTube video IDs.
-
-   IMPORTANT:
-   Do NOT use:
-       RDxxxxxxxxxxx
-
-   as a normal playlist ID.
-
-   The first video is:
-       5MIGQBpVeqs
-
-   This is being used to test the player independently
-   from the Radio/Mix URL.
 ========================================================= */
 
 const SONGS = [
 
   {
-    id: "5MIGQBpVeqs",
-    title: "Mujhse Mohabbat Ka",
-    artist: "Kumar Sanu"
+    id:"5MIGQBpVeqs",
+    title:"Mujhse Mohabbat Ka",
+    artist:"Kumar Sanu"
   },
 
   {
-    id: "Q97LLDLxE98",
-    title: "Tumse Milne Ko Dil",
-    artist: "Alka Yagnik"
+    id:"Q97LLDLxE98",
+    title:"Tumse Milne Ko Dil",
+    artist:"Alka Yagnik"
   },
 
   {
-    id: "O5qahfzGtc8",
-    title: "Jeeta Tha Jiske Liye",
-    artist: "Kumar Sanu"
+    id:"O5qahfzGtc8",
+    title:"Jeeta Tha Jiske Liye",
+    artist:"Kumar Sanu"
   },
 
   {
-    id: "Mj3KyjuKbqI",
-    title: "Aaye Ho Meri Zindagi Mein",
-    artist: "Udit Narayan"
+    id:"Mj3KyjuKbqI",
+    title:"Aaye Ho Meri Zindagi Mein",
+    artist:"Udit Narayan"
   },
 
   {
-    id: "XOj4ldIWbK8",
-    title: "Tum Dil Ki Dhadkan Mein",
-    artist: "Abhijeet"
+    id:"XOj4ldIWbK8",
+    title:"Tum Dil Ki Dhadkan Mein",
+    artist:"Abhijeet"
   },
 
   {
-    id: "fE4WaKDHBFo",
-    title: "Agar Tum Na Hote",
-    artist: "R.D. Burman"
+    id:"fE4WaKDHBFo",
+    title:"Agar Tum Na Hote",
+    artist:"R.D. Burman"
   },
 
   {
-    id: "xxG3XA4fCww",
-    title: "Mere Rang Mein Rangne Wali",
-    artist: "S.P. Balasubrahmanyam"
+    id:"xxG3XA4fCww",
+    title:"Mere Rang Mein Rangne Wali",
+    artist:"S.P. Balasubrahmanyam"
   },
 
   {
-    id: "5EZagydXjNU",
-    title: "Ek Sanam Chahiye Aashiqui Ke Liye",
-    artist: "Kumar Sanu"
+    id:"5EZagydXjNU",
+    title:"Ek Sanam Chahiye Aashiqui Ke Liye",
+    artist:"Kumar Sanu"
   },
 
   {
-    id: "d7MDzmchS50",
-    title: "Yeh Dil Deewana",
-    artist: "Sonu Nigam"
+    id:"d7MDzmchS50",
+    title:"Yeh Dil Deewana",
+    artist:"Sonu Nigam"
   },
 
   {
-    id: "xKb6lP3JxrA",
-    title: "Pardesi Pardesi",
-    artist: "Udit Narayan"
+    id:"xKb6lP3JxrA",
+    title:"Pardesi Pardesi",
+    artist:"Udit Narayan"
   },
 
   {
-    id: "fZozVRg1gyE",
-    title: "Chand Se Parda",
-    artist: "Kumar Sanu"
+    id:"fZozVRg1gyE",
+    title:"Chand Se Parda",
+    artist:"Kumar Sanu"
   },
 
   {
-    id: "ER7RoDTT2_4",
-    title: "Barsaat Ke Mausam Mein",
-    artist: "Kumar Sanu"
+    id:"ER7RoDTT2_4",
+    title:"Barsaat Ke Mausam Mein",
+    artist:"Kumar Sanu"
   },
 
   {
-    id: "eLzEykVMZn0",
-    title: "Ae Kash Ke Hum",
-    artist: "Jatin-Lalit"
+    id:"eLzEykVMZn0",
+    title:"Ae Kash Ke Hum",
+    artist:"Jatin-Lalit"
   },
 
   {
-    id: "2LFNbp2_NNY",
-    title: "Dil Ke Badle Sanam",
-    artist: "Udit Narayan"
+    id:"2LFNbp2_NNY",
+    title:"Dil Ke Badle Sanam",
+    artist:"Udit Narayan"
   },
 
   {
-    id: "qDIQ6HXu5Rg",
-    title: "Aksar Is Duniya Mein",
-    artist: "Alka Yagnik"
+    id:"qDIQ6HXu5Rg",
+    title:"Aksar Is Duniya Mein",
+    artist:"Alka Yagnik"
   },
 
   {
-    id: "IJNR_UVLDhs",
-    title: "Main Nikla Gaddi Leke",
-    artist: "Udit Narayan"
+    id:"IJNR_UVLDhs",
+    title:"Main Nikla Gaddi Leke",
+    artist:"Udit Narayan"
   }
 
 ];
@@ -591,9 +1513,13 @@ const SONGS = [
 ========================================================= */
 
 let player = null;
+
 let ready = false;
+
 let currentIndex = 0;
+
 let timer = null;
+
 
 
 /* =========================================================
@@ -602,11 +1528,10 @@ let timer = null;
 
 function loadYouTubeAPI(){
 
-  /*
-   * If the API has already loaded, create the player immediately.
-   */
-
-  if(window.YT && window.YT.Player){
+  if(
+    window.YT &&
+    window.YT.Player
+  ){
 
     createPlayer();
 
@@ -614,21 +1539,13 @@ function loadYouTubeAPI(){
   }
 
 
-  /*
-   * YouTube calls this global function automatically
-   * after the API has finished loading.
-   */
+  window.onYouTubeIframeAPIReady =
+    function(){
 
-  window.onYouTubeIframeAPIReady = function(){
+      createPlayer();
 
-    createPlayer();
+    };
 
-  };
-
-
-  /*
-   * Load the API only once.
-   */
 
   if(
     !document.querySelector(
@@ -639,16 +1556,22 @@ function loadYouTubeAPI(){
     const script =
       document.createElement("script");
 
+
     script.src =
       "https://www.youtube.com/iframe_api";
 
+
     script.async = true;
 
-    document.head.appendChild(script);
+
+    document.head.appendChild(
+      script
+    );
 
   }
 
 }
+
 
 
 /* =========================================================
@@ -658,218 +1581,240 @@ function loadYouTubeAPI(){
 function createPlayer(){
 
   if(player){
-
     return;
   }
 
 
-  player = new YT.Player(
-    "yt",
-    {
+  player =
+    new YT.Player(
+      "yt",
+      {
 
-      width:"1",
+        width:"1",
 
-      height:"1",
+        height:"1",
 
-      videoId:
-        SONGS[currentIndex].id,
-
-
-      playerVars:{
-        autoplay:0,
-        controls:0,
-        disablekb:1,
-        playsinline:1,
-        rel:0,
-        modestbranding:1,
-        iv_load_policy:3
-      },
+        videoId:
+          SONGS[currentIndex].id,
 
 
-      events:{
+        playerVars:{
 
-        onReady:function(){
+          autoplay:0,
 
-          ready = true;
+          controls:0,
 
-          updateSong();
+          disablekb:1,
 
-          document
-            .getElementById("play")
-            .textContent = "▶";
+          playsinline:1,
 
-          console.log(
-            "YouTube player ready"
-          );
+          rel:0,
+
+          modestbranding:1,
+
+          iv_load_policy:3,
+
+          enablejsapi:1,
+
+          origin:
+            window.location.origin
 
         },
 
 
-        onStateChange:function(event){
+        events:{
 
-          const state =
-            event.data;
+          onReady:function(){
 
+            ready = true;
 
-          /*
-           * Playing
-           */
+            updateSong();
 
-          if(
-            state ===
-            YT.PlayerState.PLAYING
-          ){
-
-            document
-              .body
-              .classList
-              .add("playing");
-
-            document
-              .getElementById("panel")
-              .classList
-              .add("playing");
-
-            document
-              .getElementById("play")
-              .textContent = "⏸";
-
-            startTimer();
-
-          }
-
-
-          /*
-           * Paused
-           */
-
-          else if(
-            state ===
-            YT.PlayerState.PAUSED
-          ){
-
-            document
-              .body
-              .classList
-              .remove("playing");
-
-            document
-              .getElementById("panel")
-              .classList
-              .remove("playing");
 
             document
               .getElementById("play")
               .textContent = "▶";
 
-            stopTimer();
 
-          }
+            console.log(
+              "YouTube player ready"
+            );
+
+          },
 
 
-          /*
-           * Video ended
-           */
-
-          else if(
-            state ===
-            YT.PlayerState.ENDED
+          onStateChange:function(
+            event
           ){
 
+            const state =
+              event.data;
+
+
+            /* PLAYING */
+
+            if(
+              state ===
+              YT.PlayerState.PLAYING
+            ){
+
+              document
+                .body
+                .classList
+                .add("playing");
+
+
+              document
+                .getElementById("panel")
+                .classList
+                .add("playing");
+
+
+              document
+                .getElementById("play")
+                .textContent = "⏸";
+
+
+              startTimer();
+
+            }
+
+
+            /* PAUSED */
+
+            else if(
+              state ===
+              YT.PlayerState.PAUSED
+            ){
+
+              document
+                .body
+                .classList
+                .remove("playing");
+
+
+              document
+                .getElementById("panel")
+                .classList
+                .remove("playing");
+
+
+              document
+                .getElementById("play")
+                .textContent = "▶";
+
+
+              stopTimer();
+
+            }
+
+
+            /* ENDED */
+
+            else if(
+              state ===
+              YT.PlayerState.ENDED
+            ){
+
+              stopTimer();
+
+
+              goTo(
+                currentIndex + 1,
+                true
+              );
+
+            }
+
+          },
+
+
+          /* YOUTUBE ERRORS */
+
+          onError:function(
+            event
+          ){
+
+            const errors = {
+
+              2:
+                "Invalid YouTube video ID.",
+
+              5:
+                "YouTube HTML5 player error.",
+
+              100:
+                "Video unavailable or private.",
+
+              101:
+                "This video does not allow embedded playback.",
+
+              150:
+                "This video does not allow embedded playback.",
+
+              153:
+                "YouTube could not identify the embedding request."
+
+            };
+
+
+            const message =
+              errors[event.data] ||
+              "YouTube playback error.";
+
+
+            document
+              .getElementById("song")
+              .textContent =
+                message;
+
+
+            document
+              .getElementById("artist")
+              .textContent =
+                "YouTube error " +
+                event.data;
+
+
+            document
+              .getElementById("play")
+              .textContent = "▶";
+
+
+            document
+              .body
+              .classList
+              .remove("playing");
+
+
+            document
+              .getElementById("panel")
+              .classList
+              .remove("playing");
+
+
             stopTimer();
 
-            goTo(
-              currentIndex + 1,
-              true
+
+            console.error(
+              "YouTube error:",
+              event.data,
+              message
             );
 
           }
 
-        },
-
-
-        /*
-         * YouTube errors
-         */
-
-        onError:function(event){
-
-          const errors = {
-
-            2:
-              "Invalid YouTube video ID.",
-
-            5:
-              "YouTube HTML5 player error.",
-
-            100:
-              "Video unavailable or private.",
-
-            101:
-              "This video does not allow embedded playback.",
-
-            150:
-              "This video does not allow embedded playback."
-
-          };
-
-
-          const message =
-            errors[event.data] ||
-            "YouTube playback error.";
-
-
-          document
-            .getElementById("song")
-            .textContent =
-              message;
-
-
-          document
-            .getElementById("artist")
-            .textContent =
-              "YouTube error " +
-              event.data;
-
-
-          document
-            .getElementById("play")
-            .textContent = "▶";
-
-
-          document
-            .body
-            .classList
-            .remove("playing");
-
-
-          document
-            .getElementById("panel")
-            .classList
-            .remove("playing");
-
-
-          stopTimer();
-
-
-          console.error(
-            "YouTube error:",
-            event.data,
-            message
-          );
-
         }
 
       }
-
-    }
-  );
+    );
 
 }
 
 
+
 /* =========================================================
-   UPDATE SONG INFORMATION
+   UPDATE SONG
 ========================================================= */
 
 function updateSong(){
@@ -911,6 +1856,7 @@ function updateSong(){
 }
 
 
+
 /* =========================================================
    PLAY / PAUSE
 ========================================================= */
@@ -929,20 +1875,15 @@ document
         document
           .getElementById("song")
           .textContent =
-            "YouTube is loading…";
+            "YouTube लोड हो रहा है…";
 
         return;
-
       }
 
 
       const state =
         player.getPlayerState();
 
-
-      /*
-       * If playing, pause.
-       */
 
       if(
         state ===
@@ -952,21 +1893,11 @@ document
         player.pauseVideo();
 
         return;
-
       }
 
 
-      /*
-       * IMPORTANT:
-       *
-       * loadVideoById() is called from the
-       * user's actual click.
-       *
-       * This avoids trying to autoplay
-       * before user interaction.
-       */
-
       player.loadVideoById({
+
         videoId:
           SONGS[currentIndex].id,
 
@@ -979,6 +1910,7 @@ document
 
     }
   );
+
 
 
 /* =========================================================
@@ -1000,6 +1932,7 @@ document
   );
 
 
+
 /* =========================================================
    PREVIOUS
 ========================================================= */
@@ -1017,6 +1950,7 @@ document
 
     }
   );
+
 
 
 /* =========================================================
@@ -1048,7 +1982,6 @@ function goTo(
   ){
 
     return;
-
   }
 
 
@@ -1074,8 +2007,9 @@ function goTo(
 }
 
 
+
 /* =========================================================
-   PROGRESS BAR CLICK
+   PROGRESS BAR
 ========================================================= */
 
 document
@@ -1090,7 +2024,6 @@ document
       ){
 
         return;
-
       }
 
 
@@ -1104,7 +2037,6 @@ document
       ){
 
         return;
-
       }
 
 
@@ -1152,8 +2084,9 @@ document
   );
 
 
+
 /* =========================================================
-   PROGRESS TIMER
+   TIMER
 ========================================================= */
 
 function startTimer(){
@@ -1171,7 +2104,6 @@ function startTimer(){
         ){
 
           return;
-
         }
 
 
@@ -1272,6 +2204,7 @@ function formatTime(
 }
 
 
+
 /* =========================================================
    CLOCK
 ========================================================= */
@@ -1284,9 +2217,7 @@ function updateClock(){
 
 
   if(!clock){
-
     return;
-
   }
 
 
@@ -1311,6 +2242,7 @@ setInterval(
   updateClock,
   1000
 );
+
 
 
 /* =========================================================
