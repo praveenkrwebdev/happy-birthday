@@ -1,140 +1,343 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="hi"><head>
+<!-- Google tag (gtag.js) -->
+<script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/b1558f06/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YNRJRL3QJC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-<head>
+  gtag('config', 'G-YNRJRL3QJC');
+</script>
+<script async="" src="https://bondin.io/embed/v1.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>हॉर्न ओके प्लीज़ — Highway bangers from Indian trucks</title>
+<meta name="description" content="Songs that play in Indian trucks on the highway. Dhaba stops, night driving, Horn OK Please.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&amp;family=Mukta:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --kesari:#F2790F;      /* painted orange */
+    --truckgreen:#1E7A46;  /* body green */
+    --cream:#FFF3DC;       /* painted cream */
+    --night:#14213D;       /* night highway sky */
+    --signal:#D62828;      /* tail-light red */
+    --marigold:#FFC300;    /* indicator amber */
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Mukta',sans-serif;
+    color:var(--cream);
+    background:url('bg.jpg') center/cover no-repeat #14213D;
+    overflow:hidden;
+    position:relative;
+  }
+  /* subtle dark gradient so text stays readable, same trick as saloon.wtf */
+  body::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to bottom, rgba(0,0,0,.25), transparent 35%, rgba(0,0,0,.45));
+  }
 
-    <meta charset="UTF-8">
+  header{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:20px 28px;z-index:5}
+  .online{display:flex;align-items:center;gap:8px;font-size:15px;opacity:.9}
+  .dot{width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 8px #3ddc84}
+  .links{display:flex;align-items:center;gap:18px}
+  .links a{color:var(--cream);text-decoration:none;font-weight:500;font-size:15px;border-bottom:1px dashed rgba(255,243,220,.4);padding-bottom:1px}
+  .links a:hover{color:var(--marigold)}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  .title{position:absolute;top:16%;left:0;right:0;text-align:center;z-index:4;padding:0 16px}
+  .title h1{
+    font-family:'Yatra One',cursive;
+    font-size:clamp(52px,10vw,130px);
+    line-height:1.05;
+    color:var(--cream);
+    text-shadow:4px 4px 0 var(--signal), 8px 8px 0 rgba(0,0,0,.35);
+  }
+  .title p{margin-top:14px;font-size:clamp(15px,2vw,19px);color:var(--marigold);letter-spacing:.04em}
 
-    <title>Happy Birthday ❤️</title>
+  /* ---- PLAYER: styled like the back panel of a truck ---- */
+  .truck-panel{
+    position:absolute;left:50%;bottom:6%;transform:translateX(-50%);
+    width:min(560px,92vw);z-index:6;
+    background:linear-gradient(#20894f,var(--truckgreen));
+    border:6px solid var(--kesari);
+    border-radius:14px;
+    box-shadow:0 18px 40px rgba(0,0,0,.55), inset 0 0 0 3px rgba(255,243,220,.25);
+    padding:16px 18px 12px;
+  }
+  .hop{
+    font-family:'Yatra One',cursive;text-align:center;
+    color:var(--cream);font-size:clamp(20px,4vw,30px);letter-spacing:.12em;
+    text-shadow:2px 2px 0 rgba(0,0,0,.4);margin-bottom:10px;
+  }
+  .hop span{color:var(--marigold)}
+  .row{display:flex;align-items:center;gap:14px}
+  .yt-screen{
+    position:relative;
+    width:64px;
+    height:64px;
+    flex-shrink:0;
+    border-radius:10px;
+    overflow:hidden;
+    border:2px solid var(--kesari);
+    box-shadow:0 0 0 2px var(--cream), 0 3px 8px rgba(0,0,0,.4);
+    background:#000;
+  }
+  #yt{
+    width:100% !important;
+    height:100% !important;
+    border:none !important;
+    display:block;
+  }
+  .meta{flex:1;min-width:0}
+  .song{font-weight:700;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .artist{font-size:14px;opacity:.85}
+  .controls{display:flex;align-items:center;gap:10px}
+  button{
+    background:var(--cream);border:none;border-radius:50%;
+    width:42px;height:42px;display:grid;place-items:center;
+    cursor:pointer;color:#1a1a1a;font-size:16px;
+    box-shadow:0 3px 0 rgba(0,0,0,.4);
+  }
+  button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.4)}
+  button.play{width:54px;height:54px;background:var(--marigold);font-size:20px}
+  button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
+  .bar{margin-top:12px;display:flex;align-items:center;gap:10px;font-size:13px}
+  .track{flex:1;height:8px;border-radius:6px;background:rgba(0,0,0,.35);cursor:pointer;position:relative}
+  .fill{position:absolute;left:0;top:0;bottom:0;width:0%;border-radius:6px;background:var(--marigold)}
 
-    <!-- Google Fonts -->
+  /* blinking indicators, on only while playing */
+  .ind{position:absolute;bottom:10px;width:18px;height:12px;border-radius:3px;background:#6b4a00;border:2px solid rgba(0,0,0,.35)}
+  .ind.l{left:-30px}.ind.r{right:-30px}
+  .playing .ind{background:var(--marigold);animation:blink 1s steps(1) infinite;box-shadow:0 0 12px var(--marigold)}
+  @keyframes blink{50%{background:#6b4a00;box-shadow:none}}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  /* mudflaps */
+  .flap{position:absolute;bottom:-34px;width:70px;height:34px;background:#111;border-radius:0 0 8px 8px;
+    display:grid;place-items:center;color:var(--cream);font-family:'Yatra One',cursive;font-size:11px}
+  .flap.l{left:24px}.flap.r{right:24px}
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  @media (prefers-reduced-motion:reduce){
+    .ind,.cover{animation:none !important}
+  }
+  @media (max-width:520px){
+    .flap,.ind{display:none}
+    header{padding:14px 16px}
+  }
+</style>
+<script src="https://www.youtube.com/iframe_api"></script><style>
+  .imageye-selected {
+    outline: 2px solid black !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  }
+</style></head>
+<body class="">
 
-    <!-- Luxury Font -->
+<header>
+  <div class="online"><span class="dot"></span><span id="clock">3:33 am</span></div>
+  <nav class="links">
+    <!-- Spotify: uncomment and paste your playlist link when ready
+    <a href="https://open.spotify.com/playlist/YOUR_ID" target="_blank" rel="noopener">Spotify</a> -->
+    <a href="https://music.youtube.com/playlist?list=PLYlo8vpxz3qI" target="_blank" rel="noopener">YT Music</a>
+    <bondin-support username="hiren" label="Support me"></bondin-support>
+  </nav>
+</header>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-<!-- Aurora -->
-
-<div class="aurora"></div>
-
-<!-- Moon -->
-
-<div class="moon"></div>
-
-<!-- Stars -->
-
-<div id="stars"></div>
-
-<!-- Shooting Star -->
-
-<div class="shooting-star">
-
-    <span></span>
-
+<div class="title">
+  <h1>हॉर्न ओके<br>प्लीज़</h1>
+  <p>Songs that play in Indian trucks. Night highway. Dhaba chai. Full volume.</p>
 </div>
 
-<!-- Floating Particles -->
+<div class="truck-panel" id="panel">
+  <div class="ind l"></div><div class="ind r"></div>
+  <div class="hop">HORN <span>OK</span> PLEASE</div>
+  <div class="row">
+    <div class="yt-screen">
+      <iframe id="yt" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Mujhse Mohabbat Ka" width="640" height="360" src="https://www.youtube.com/embed/rqEjOLu105I?controls=0&amp;disablekb=1&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fwww.truckplaylist.wtf&amp;widgetid=1&amp;forigin=https%3A%2F%2Fwww.truckplaylist.wtf%2F&amp;aoriginsup=1&amp;gporigin=https%3A%2F%2Fwww.google.com%2F&amp;vf=6" data-gtm-yt-inspected-11="true"></iframe>
+    </div>
+    <div class="meta">
+      <div class="song" id="song">Mujhse Mohabbat Ka</div>
+      <div class="artist" id="artist">Kumar Sanu</div>
+    </div>
+    <div class="controls">
+      <button id="prev" aria-label="Previous song">⏮</button>
+      <button id="play" class="play" aria-label="Play or pause">▶</button>
+      <button id="next" aria-label="Next song">⏭</button>
+    </div>
+  </div>
+  <div class="bar">
+    <span id="cur">0:07</span>
+    <div class="track" id="track"><div class="fill" id="fill" style="width: 2.43776%;"></div></div>
+    <span id="dur">5:11</span>
+  </div>
+  <div class="flap l">बुरी नज़र</div>
+  <div class="flap r">वाले तेरा<br>मुँह काला</div>
+</div>
 
-<div id="particles"></div>
+<script>
+/* ================= SONG LIST =================
+   Each song is a YouTube video ID + metadata.
+   Unlike playlist mode, loading individual videos
+   is far more reliable (same approach as saloon.wtf).
+   To add songs: find the video on YouTube, copy the
+   11-character ID from the URL, and add an entry. */
 
-<!-- Main -->
+const SONGS = [
+  { id: "rqEjOLu105I", title: "Bahut Pyar Karte Hai",          artist: "S.P. Balasubramaniam" },
+  { id: "5MIGQBpVeqs", title: "Mujhse Mohabbat Ka",            artist: "Kumar Sanu" },
+  { id: "Q97LLDLxE98", title: "Tumse Milne Ko Dil",            artist: "Alka Yagnik" },
+  { id: "O5qahfzGtc8", title: "Jeeta Tha Jiske Liye",          artist: "Kumar Sanu" },
+  { id: "Mj3KyjuKbqI", title: "Aaye Ho Meri Zindagi Mein",     artist: "Udit Narayan" },
+  { id: "XOj4ldIWbK8", title: "Tum Dil Ki Dhadkan Mein",       artist: "Abhijeet" },
+  { id: "fE4WaKDHBFo", title: "Agar Tum Na Hote",              artist: "R.D. Burman" },
+  { id: "xxG3XA4fCww", title: "Mere Rang Mein Rangne Wali",    artist: "S.P. Balasubrahmanyam" },
+  { id: "5EZagydXjNU", title: "Ek Sanam Chahiye Aashiqui Ke Liye", artist: "Kumar Sanu" },
+  { id: "d7MDzmchS50", title: "Yeh Dil Deewana",               artist: "Sonu Nigam" },
+  { id: "xKb6lP3JxrA", title: "Pardesi Pardesi",               artist: "Udit Narayan" },
+  { id: "fZozVRg1gyE", title: "Chand Se Parda",                artist: "Kumar Sanu" },
+  { id: "ER7RoDTT2_4", title: "Barsaat Ke Mausam Mein",        artist: "Kumar Sanu" },
+  { id: "eLzEykVMZn0", title: "Ae Kash Ke Hum",                artist: "Jatin-Lalit" },
+  { id: "2LFNbp2_NNY", title: "Dil Ke Badle Sanam",            artist: "Udit Narayan" },
+  { id: "qDIQ6HXu5Rg", title: "Aksar Is Duniya Mein",          artist: "Alka Yagnik" },
+  { id: "IJNR_UVLDhs", title: "Main Nikla Gaddi Leke",         artist: "Udit Narayan" },
+];
 
-<main>
+/* ================================================= */
 
-    <!-- Scene 1 -->
+let player, ready = false, timer;
+let currentIndex = 0;
+let started = false;
 
-    <section id="scene1" class="scene active">
+// load YouTube IFrame API
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
 
-        <div class="content">
+function onYouTubeIframeAPIReady(){
+  player = new YT.Player('yt', {
+    videoId: SONGS[0].id,
+    playerVars:{
+      controls: 0,
+      disablekb: 1,
+      playsinline: 1,
+      rel: 0,
+      modestbranding: 1
+    },
+    events:{
+      onReady: () => {
+        ready = true;
+        updateDisplay();
+      },
+      onError: e => {
+        // skip to next song if this one is blocked
+        document.getElementById('song').textContent = 'Skipping blocked song…';
+        document.getElementById('artist').textContent = '';
+        setTimeout(() => goTo(currentIndex + 1), 1000);
+      },
+      onStateChange: e => {
+        const state = e.data;
+        const playing = state === YT.PlayerState.PLAYING;
 
-            <span class="small-title">
+        document.body.classList.toggle('playing', playing);
+        document.getElementById('panel').classList.toggle('playing', playing);
+        document.getElementById('play').textContent = playing ? '⏸' : '▶';
 
-                ✦ Close your eyes ✦
+        if (playing) {
+          started = true;
+          updateDisplay();
+          startTimer();
+        } else {
+          clearInterval(timer);
+        }
 
-            </span>
+        // auto-advance when song ends
+        if (state === YT.PlayerState.ENDED) {
+          goTo(currentIndex + 1);
+        }
+      }
+    }
+  });
+}
 
-            <h1>
+function updateDisplay(){
+  if (!ready) return;
+  const song = SONGS[currentIndex];
+  document.getElementById('song').textContent = song.title;
+  document.getElementById('artist').textContent = song.artist;
+  const cover = document.getElementById('cover');
+  if (cover) {
+    cover.style.backgroundImage = `url(https://i.ytimg.com/vi/${song.id}/hqdefault.jpg)`;
+  }
+}
 
-                Make a Wish Didi
+function goTo(index){
+  currentIndex = ((index % SONGS.length) + SONGS.length) % SONGS.length;
+  if (ready) {
+    player.loadVideoById(SONGS[currentIndex].id);
+    updateDisplay();
+  }
+}
 
-            </h1>
+document.getElementById('play').onclick = () => {
+  if (!ready) return;
+  const st = player.getPlayerState();
+  if (st === YT.PlayerState.PLAYING) {
+    player.pauseVideo();
+  } else {
+    if (!started) {
+      player.loadVideoById(SONGS[currentIndex].id);
+    } else {
+      player.playVideo();
+    }
+  }
+};
 
-        </div>
+document.getElementById('next').onclick = () => goTo(currentIndex + 1);
+document.getElementById('prev').onclick = () => goTo(currentIndex - 1);
 
-    </section>
+let seekLock = 0; // timestamp when seek lock expires
 
-    <!-- Scene 2 -->
+document.getElementById('track').onclick = e => {
+  if (!ready) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  const fraction = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+  const duration = player.getDuration();
+  const seekTime = fraction * duration;
 
-    <section id="scene2" class="scene">
+  // instant visual feedback — update bar + time immediately
+  document.getElementById('fill').style.width = (fraction * 100) + '%';
+  document.getElementById('cur').textContent = fmt(seekTime);
 
-        <div class="content">
+  // lock the bar for 2s so the timer doesn't snap it back while YouTube buffers
+  seekLock = Date.now() + 2000;
 
-            <h2>
+  player.seekTo(seekTime, true);
+};
 
-                May all your wishes
+function fmt(t){ t=Math.floor(t||0); return `${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`; }
+function startTimer(){
+  clearInterval(timer);
+  timer = setInterval(() => {
+    // skip update if seek lock is active (prevents bar snapping back)
+    if (Date.now() < seekLock) return;
+    const c = player.getCurrentTime(), d = player.getDuration();
+    document.getElementById('cur').textContent = fmt(c);
+    document.getElementById('dur').textContent = fmt(d);
+    document.getElementById('fill').style.width = (d ? (c/d)*100 : 0) + '%';
+  }, 250);
+}
 
-                <br>
+// clock top-left, saloon.wtf style
+setInterval(() => {
+  document.getElementById('clock').textContent =
+    new Date().toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'}).toLowerCase();
+}, 1000);
 
-                come true.
+</script>
 
-            </h2>
 
-            <div class="heart"></div>
-
-        </div>
-
-    </section>
-
-    <!-- Scene 3 -->
-
-    <section id="scene3" class="scene">
-
-        <div class="content">
-
-            <span class="small-title">
-
-                With Love
-
-            </span>
-
-            <h1 class="birthday">
-
-                Happy Birthday
-
-            </h1>
-
-            <h3>
-
-                My Dearest Sister
-
-            </h3>
-
-            <p>
-
-                You are the brightest star in our family.
-
-            </p>
-
-        </div>
-
-    </section>
-
-</main>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
+</body></html>
