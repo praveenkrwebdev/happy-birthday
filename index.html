@@ -9,7 +9,30 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Horn OK Please — Highway Music</title>
+<meta
+  name="theme-color"
+  content="#080808"
+>
+
+<title>हॉर्न ओके प्लीज़ — संगीत का सफ़र</title>
+
+<!-- Hindi Font -->
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+>
+
 
 <style>
 
@@ -18,27 +41,110 @@
 ========================================================= */
 
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
 }
 
-html,
-body{
-  width:100%;
-  min-height:100%;
+html{
+  scroll-behavior:smooth;
 }
 
 body{
+
+  min-height:100vh;
+
   font-family:
-    Arial,
-    Helvetica,
+    "Noto Sans Devanagari",
     sans-serif;
 
-  background:#070707;
   color:#fff;
 
+  background:#070707;
+
   overflow-x:hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.page{
+
+  min-height:100vh;
+
+  position:relative;
+
+  isolation:isolate;
+
+  overflow:hidden;
+
+  background:
+
+    linear-gradient(
+      rgba(0,0,0,.60),
+      rgba(0,0,0,.90)
+    ),
+
+    url("hero-desktop.webp");
+
+  background-size:cover;
+
+  background-position:center;
+
+  background-attachment:fixed;
+}
+
+
+/* Dark overlay */
+
+.page::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(255,122,0,.13),
+      transparent 38%
+    );
+
+  pointer-events:none;
+
+  z-index:-1;
+}
+
+
+/* Bottom fade */
+
+.page::after{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:350px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      #070707
+    );
+
+  pointer-events:none;
+
+  z-index:-1;
 }
 
 
@@ -47,36 +153,88 @@ body{
 ========================================================= */
 
 header{
-  width:100%;
-  padding:18px 24px;
+
+  width:min(
+    1180px,
+    calc(100% - 32px)
+  );
+
+  margin:0 auto;
+
+  padding:18px 0;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  border-bottom:1px solid rgba(255,255,255,.08);
-
-  background:rgba(0,0,0,.82);
-
   position:relative;
-  z-index:20;
 
-  backdrop-filter:blur(10px);
+  z-index:10;
 }
 
+
 .logo{
-  font-size:20px;
-  font-weight:900;
-  letter-spacing:1px;
+
+  font-size:17px;
+
+  font-weight:800;
+
+  letter-spacing:.3px;
 }
 
 .logo span{
+
   color:#ff7a00;
 }
 
+
 .clock{
-  font-size:14px;
-  color:#aaa;
+
+  color:rgba(255,255,255,.65);
+
+  font-size:13px;
+
+  font-weight:500;
+
+  padding:
+    7px
+    12px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.10);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+
+  width:min(
+    1180px,
+    calc(100% - 32px)
+  );
+
+  margin:0 auto;
+
+  position:relative;
+
+  z-index:2;
 }
 
 
@@ -86,129 +244,90 @@ header{
 
 .hero{
 
-  min-height:72vh;
+  min-height:58vh;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   text-align:center;
 
-  padding:50px 20px;
-
-  position:relative;
-
-  overflow:hidden;
-
-  isolation:isolate;
-
-  background-image:
-    linear-gradient(
-      rgba(0,0,0,.38),
-      rgba(0,0,0,.68)
-    ),
-    url("hero-desktop.webp");
-
-  background-size:cover;
-
-  background-position:center;
-
-  background-repeat:no-repeat;
+  padding:
+    60px
+    20px
+    110px;
 }
 
-
-/* Main orange glow */
-
-.hero::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255,122,0,.14),
-      transparent 55%
-    );
-
-  z-index:0;
-
-  pointer-events:none;
-}
-
-
-/* Bottom fade */
-
-.hero::after{
-
-  content:"";
-
-  position:absolute;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  height:180px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      transparent,
-      #070707
-    );
-
-  z-index:0;
-
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   HERO CONTENT
-========================================================= */
 
 .hero-content{
 
-  position:relative;
+  max-width:720px;
 
-  z-index:5;
-
-  max-width:850px;
-
-  padding-bottom:50px;
+  margin:auto;
 }
+
+
+/* Badge */
 
 .badge{
 
-  display:inline-block;
+  display:inline-flex;
 
-  padding:8px 16px;
+  align-items:center;
 
-  border:1px solid rgba(255,122,0,.45);
+  gap:8px;
 
-  border-radius:999px;
-
-  color:#ffad68;
-
-  background:rgba(0,0,0,.35);
-
-  backdrop-filter:blur(8px);
-
-  font-size:12px;
-
-  font-weight:700;
-
-  letter-spacing:2px;
+  padding:
+    7px
+    13px;
 
   margin-bottom:22px;
 
-  box-shadow:
-    0 0 30px rgba(255,122,0,.08);
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.055);
+
+  backdrop-filter:
+    blur(15px);
+
+  -webkit-backdrop-filter:
+    blur(15px);
+
+  color:
+    rgba(255,255,255,.75);
+
+  font-size:12px;
+
+  font-weight:600;
 }
+
+
+.badge::before{
+
+  content:"";
+
+  width:6px;
+
+  height:6px;
+
+  border-radius:50%;
+
+  background:#ff7a00;
+
+  box-shadow:
+    0 0 12px
+    rgba(255,122,0,.8);
+}
+
+
+/* Heading */
 
 h1{
 
@@ -216,447 +335,209 @@ h1{
     clamp(
       42px,
       8vw,
-      90px
+      82px
     );
 
-  line-height:.95;
+  line-height:1.05;
 
   font-weight:900;
 
-  letter-spacing:-4px;
-
-  text-transform:uppercase;
+  letter-spacing:-2px;
 
   text-shadow:
-    0 5px 30px rgba(0,0,0,.75);
+    0 10px 40px
+    rgba(0,0,0,.65);
 }
 
+
 h1 span{
+
   color:#ff7a00;
+
+  text-shadow:
+    0 0 35px
+    rgba(255,122,0,.18);
 }
+
 
 .subtitle{
 
-  margin-top:24px;
-
-  color:#eee;
-
-  font-size:17px;
-
-  line-height:1.8;
-
-  max-width:700px;
-
-  margin-left:auto;
-  margin-right:auto;
-
-  text-shadow:
-    0 2px 15px rgba(0,0,0,.95);
-}
-
-
-/* =========================================================
-   TRUCK
-========================================================= */
-
-.hero-truck{
-
-  position:absolute;
-
-  left:-200px;
-
-  bottom:55px;
-
-  font-size:95px;
-
-  z-index:3;
-
-  filter:
-    drop-shadow(
-      0 12px 18px rgba(0,0,0,.8)
-    )
-    drop-shadow(
-      0 0 25px rgba(255,122,0,.20)
-    );
-
-  animation:
-    truckDrive
-    22s
-    linear
-    infinite;
-
-  pointer-events:none;
-}
-
-.hero-truck::after{
-
-  content:"";
-
-  position:absolute;
-
-  width:190px;
-
-  height:25px;
-
-  left:8px;
-
-  bottom:-6px;
-
-  background:
-    rgba(255,122,0,.30);
-
-  filter:blur(18px);
-
-  border-radius:50%;
-}
-
-
-/* =========================================================
-   HORN
-========================================================= */
-
-.hero-horn{
-
-  position:absolute;
-
-  right:8%;
-
-  top:17%;
-
-  font-size:65px;
-
-  z-index:2;
-
-  opacity:.22;
-
-  transform:rotate(-12deg);
-
-  filter:
-    drop-shadow(
-      0 0 20px rgba(255,122,0,.55)
-    );
-
-  animation:
-    hornFloat
-    4s
-    ease-in-out
-    infinite;
-
-  pointer-events:none;
-}
-
-.hero-horn::after{
-
-  content:")))" ;
-
-  position:absolute;
-
-  left:65px;
-
-  top:-5px;
-
-  font-size:34px;
-
-  font-weight:900;
-
-  color:#ff7a00;
-
-  letter-spacing:-7px;
-
-  opacity:.7;
-
-  animation:
-    hornSound
-    1.8s
-    ease-in-out
-    infinite;
-}
-
-
-/* =========================================================
-   HORN TEXT
-========================================================= */
-
-.horn-text{
-
-  position:absolute;
-
-  right:10%;
-
-  top:30%;
-
-  color:#ff7a00;
-
-  font-size:12px;
-
-  font-weight:900;
-
-  letter-spacing:3px;
-
-  opacity:.45;
-
-  transform:rotate(-8deg);
-
-  z-index:2;
-
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   HIGHWAY ROAD
-========================================================= */
-
-.hero-road{
-
-  position:absolute;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  height:95px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(0,0,0,.15) 15%,
-      rgba(0,0,0,.92) 75%
-    );
-
-  z-index:1;
-
-  pointer-events:none;
-}
-
-
-/* Road markings */
-
-.hero-road::before{
-
-  content:"";
-
-  position:absolute;
-
-  left:0;
-  right:0;
-
-  top:62px;
-
-  height:5px;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-
-      transparent 0,
-      transparent 45px,
-
-      rgba(255,255,255,.75) 45px,
-      rgba(255,255,255,.75) 105px,
-
-      transparent 105px,
-      transparent 165px
-    );
-
-  animation:
-    roadMove
-    1.2s
-    linear
-    infinite;
-}
-
-
-/* Road orange glow */
-
-.hero-road::after{
-
-  content:"";
-
-  position:absolute;
-
-  left:50%;
-
-  top:48px;
-
-  width:80%;
-
-  height:35px;
-
-  transform:translateX(-50%);
-
-  background:
-    radial-gradient(
-      ellipse,
-      rgba(255,122,0,.24),
-      transparent 70%
-    );
-
-  filter:blur(12px);
-}
-
-
-/* =========================================================
-   HIGHWAY LIGHTS
-========================================================= */
-
-.highway-lights{
-
-  position:absolute;
-
-  left:0;
-  right:0;
-
-  bottom:98px;
-
-  height:3px;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-
-      transparent 0,
-      transparent 70px,
-
-      rgba(255,122,0,.8) 70px,
-      rgba(255,122,0,.8) 74px,
-
-      transparent 74px,
-      transparent 150px
-    );
-
-  opacity:.55;
-
-  animation:
-    lightsMove
-    3s
-    linear
-    infinite;
-
-  pointer-events:none;
-
-  z-index:2;
-}
-
-
-/* =========================================================
-   MUSIC SECTION
-========================================================= */
-
-.music-wrap{
-
-  padding:
-    0
-    20px
-    80px;
-
-  position:relative;
-
-  z-index:10;
-}
-
-
-/* =========================================================
-   PLAYER PANEL
-========================================================= */
-
-.panel{
-
-  max-width:760px;
+  max-width:580px;
 
   margin:
-    -20px
+    22px
     auto
     0;
 
-  position:relative;
+  color:
+    rgba(255,255,255,.68);
 
-  z-index:5;
+  font-size:
+    clamp(
+      14px,
+      2vw,
+      17px
+    );
 
-  background:
-    rgba(17,17,17,.94);
+  line-height:1.9;
 
-  border:
-    1px solid
-    rgba(255,255,255,.08);
-
-  border-radius:24px;
-
-  padding:28px;
-
-  box-shadow:
-    0 20px 80px rgba(0,0,0,.55);
-
-  transition:.3s ease;
-
-  backdrop-filter:blur(12px);
-}
-
-.panel.playing{
-
-  border-color:
-    rgba(255,122,0,.4);
-
-  box-shadow:
-
-    0 20px 80px rgba(0,0,0,.55),
-
-    0 0 50px rgba(255,122,0,.08);
+  font-weight:400;
 }
 
 
 /* =========================================================
-   NOW PLAYING
+   MUSIC PLAYER
 ========================================================= */
 
-.now-playing{
+.music-section{
 
-  display:flex;
-
-  align-items:center;
-
-  gap:18px;
+  padding:
+    0
+    0
+    90px;
 }
 
-.cover{
 
-  width:72px;
-  height:72px;
+.player{
 
-  border-radius:18px;
+  width:min(
+    680px,
+    100%
+  );
+
+  margin:
+    -45px
+    auto
+    0;
+
+  padding:
+    24px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.13);
+
+  border-radius:28px;
 
   background:
     linear-gradient(
       135deg,
-      #ff7a00,
-      #ff3d00
+      rgba(255,255,255,.095),
+      rgba(255,255,255,.035)
     );
+
+  box-shadow:
+
+    0 30px 100px
+    rgba(0,0,0,.55),
+
+    inset 0 1px 0
+    rgba(255,255,255,.08);
+
+  backdrop-filter:
+    blur(25px);
+
+  -webkit-backdrop-filter:
+    blur(25px);
+
+  transition:
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+
+.player.playing{
+
+  border-color:
+    rgba(255,122,0,.30);
+
+  box-shadow:
+
+    0 30px 100px
+    rgba(0,0,0,.60),
+
+    0 0 70px
+    rgba(255,122,0,.06),
+
+    inset 0 1px 0
+    rgba(255,255,255,.08);
+}
+
+
+/* =========================================================
+   SONG INFORMATION
+========================================================= */
+
+.song-info{
 
   display:flex;
 
   align-items:center;
-  justify-content:center;
 
-  font-size:30px;
+  gap:16px;
+
+  min-width:0;
+}
+
+
+/* Album */
+
+.cover{
+
+  width:68px;
+
+  height:68px;
 
   flex:none;
 
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:20px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(255,122,0,.95),
+      rgba(255,64,0,.85)
+    );
+
+  color:#fff;
+
+  font-size:27px;
+
   box-shadow:
-    0 10px 30px
+
+    0 12px 35px
     rgba(255,90,0,.20);
 }
 
-.info{
+
+.player.playing .cover{
+
+  animation:
+    pulse
+    2s
+    ease-in-out
+    infinite;
+}
+
+
+.song-details{
 
   min-width:0;
 
   flex:1;
 }
 
-.song{
 
-  font-size:20px;
+.song-title{
+
+  font-size:19px;
 
   font-weight:800;
 
@@ -667,13 +548,15 @@ h1 span{
   text-overflow:ellipsis;
 }
 
-.artist{
 
-  color:#999;
+.song-artist{
 
-  margin-top:5px;
+  margin-top:4px;
 
-  font-size:14px;
+  color:
+    rgba(255,255,255,.52);
+
+  font-size:13px;
 }
 
 
@@ -681,40 +564,49 @@ h1 span{
    PROGRESS
 ========================================================= */
 
-.progress-area{
-  margin-top:28px;
+.progress{
+
+  margin-top:25px;
 }
+
 
 .track{
 
   width:100%;
 
-  height:6px;
+  height:5px;
 
   border-radius:99px;
 
-  background:#292929;
+  background:
+    rgba(255,255,255,.10);
 
   cursor:pointer;
 
   overflow:hidden;
 }
 
-.fill{
 
-  height:100%;
+.fill{
 
   width:0%;
 
-  background:#ff7a00;
+  height:100%;
 
   border-radius:inherit;
 
+  background:#ff7a00;
+
+  box-shadow:
+    0 0 12px
+    rgba(255,122,0,.45);
+
   transition:
-    width .15s linear;
+    width .2s linear;
 }
 
-.time-row{
+
+.time{
 
   display:flex;
 
@@ -722,9 +614,10 @@ h1 span{
 
   margin-top:8px;
 
-  font-size:11px;
+  color:
+    rgba(255,255,255,.38);
 
-  color:#777;
+  font-size:10px;
 }
 
 
@@ -740,67 +633,97 @@ h1 span{
 
   justify-content:center;
 
-  gap:16px;
+  gap:12px;
 
-  margin-top:25px;
+  margin-top:23px;
 }
+
 
 .control{
 
-  width:48px;
-  height:48px;
+  width:45px;
 
-  border-radius:50%;
+  height:45px;
 
   border:
     1px solid
-    rgba(255,255,255,.12);
+    rgba(255,255,255,.10);
 
-  background:#191919;
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.055);
 
   color:#fff;
-
-  cursor:pointer;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
-  font-size:18px;
+  cursor:pointer;
 
-  transition:.2s ease;
+  font-family:inherit;
+
+  font-size:17px;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    border-color .2s ease;
 }
+
 
 .control:hover{
 
-  background:#242424;
+  transform:translateY(-2px);
+
+  background:
+    rgba(255,255,255,.10);
+
+  border-color:
+    rgba(255,255,255,.18);
+}
+
+
+.control:active{
 
   transform:
-    translateY(-2px);
+    scale(.94);
 }
+
 
 .control.main{
 
-  width:62px;
-  height:62px;
+  width:58px;
 
-  background:#ff7a00;
+  height:58px;
 
   border-color:#ff7a00;
 
-  color:#000;
+  background:#ff7a00;
 
-  font-size:22px;
+  color:#111;
+
+  font-size:21px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(255,122,0,.22);
 }
 
+
 .control.main:hover{
-  background:#ff8c24;
+
+  background:#ff8b24;
+
+  border-color:#ff8b24;
 }
 
 
 /* =========================================================
-   YOUTUBE PLAYER
+   HIDDEN YOUTUBE PLAYER
 ========================================================= */
 
 .youtube-player{
@@ -808,10 +731,12 @@ h1 span{
   position:absolute;
 
   width:1px;
+
   height:1px;
 
-  left:-10000px;
-  top:-10000px;
+  left:-9999px;
+
+  top:-9999px;
 
   opacity:0;
 
@@ -825,33 +750,25 @@ h1 span{
 
 footer{
 
-  padding:
-    40px
-    20px
-    60px;
-
   text-align:center;
 
-  color:#555;
+  padding:
+    0
+    20px
+    45px;
 
-  font-size:12px;
+  color:
+    rgba(255,255,255,.30);
+
+  font-size:11px;
 }
 
 
 /* =========================================================
-   PLAYING ANIMATION
+   ANIMATION
 ========================================================= */
 
-body.playing .cover{
-
-  animation:
-    coverPulse
-    1.8s
-    ease-in-out
-    infinite;
-}
-
-@keyframes coverPulse{
+@keyframes pulse{
 
   0%,
   100%{
@@ -859,130 +776,69 @@ body.playing .cover{
   }
 
   50%{
-    transform:scale(1.04);
+    transform:scale(1.035);
   }
+
 }
 
 
 /* =========================================================
-   TRUCK ANIMATION
+   TABLET
 ========================================================= */
 
-@keyframes truckDrive{
+@media(max-width:768px){
 
-  0%{
-    transform:
-      translateX(0)
-      translateY(0);
+  .page{
+
+    background-image:
+
+      linear-gradient(
+        rgba(0,0,0,.62),
+        rgba(0,0,0,.92)
+      ),
+
+      url("hero-mobile.webp");
+
+    background-attachment:scroll;
   }
 
-  25%{
-    transform:
-      translateX(25vw)
-      translateY(-2px);
+
+  header{
+
+    width:
+      calc(100% - 28px);
+
+    padding-top:15px;
   }
 
-  50%{
-    transform:
-      translateX(50vw)
-      translateY(0);
+
+  main{
+
+    width:
+      calc(100% - 28px);
   }
 
-  75%{
-    transform:
-      translateX(75vw)
-      translateY(-2px);
+
+  .hero{
+
+    min-height:55vh;
+
+    padding:
+      50px
+      12px
+      100px;
   }
 
-  100%{
-    transform:
-      translateX(
-        calc(100vw + 220px)
-      )
-      translateY(0);
-  }
-}
 
+  .player{
 
-/* =========================================================
-   HORN FLOAT
-========================================================= */
+    margin-top:-40px;
 
-@keyframes hornFloat{
+    border-radius:24px;
 
-  0%,
-  100%{
-    transform:
-      rotate(-12deg)
-      translateY(0);
+    padding:20px;
   }
 
-  50%{
-    transform:
-      rotate(-8deg)
-      translateY(-10px);
-  }
-}
-
-
-/* =========================================================
-   HORN SOUND
-========================================================= */
-
-@keyframes hornSound{
-
-  0%{
-    opacity:.1;
-
-    transform:
-      translateX(0);
-  }
-
-  50%{
-    opacity:.8;
-
-    transform:
-      translateX(12px);
-  }
-
-  100%{
-    opacity:.1;
-
-    transform:
-      translateX(25px);
-  }
-}
-
-
-/* =========================================================
-   ROAD MOVEMENT
-========================================================= */
-
-@keyframes roadMove{
-
-  from{
-    background-position:0 0;
-  }
-
-  to{
-    background-position:-165px 0;
-  }
-}
-
-
-/* =========================================================
-   LIGHT MOVEMENT
-========================================================= */
-
-@keyframes lightsMove{
-
-  from{
-    background-position:0 0;
-  }
-
-  to{
-    background-position:-300px 0;
-  }
 }
 
 
@@ -990,145 +846,193 @@ body.playing .cover{
    MOBILE
 ========================================================= */
 
-@media(max-width:600px){
+@media(max-width:480px){
 
   header{
-    padding:16px;
+
+    width:
+      calc(100% - 24px);
+
+    padding-top:13px;
+  }
+
+
+  .logo{
+
+    font-size:15px;
+  }
+
+
+  .clock{
+
+    font-size:11px;
+
+    padding:
+      6px
+      10px;
+  }
+
+
+  main{
+
+    width:
+      calc(100% - 24px);
   }
 
 
   .hero{
 
-    min-height:65vh;
+    min-height:54vh;
 
     padding:
-      40px
-      16px;
-
-    background-image:
-
-      linear-gradient(
-        rgba(0,0,0,.40),
-        rgba(0,0,0,.68)
-      ),
-
-      url("hero-mobile.webp");
-
-    background-position:center;
-
-    background-size:cover;
+      35px
+      8px
+      90px;
   }
 
 
-  .hero-content{
-    padding-bottom:30px;
+  .badge{
+
+    font-size:10px;
+
+    padding:
+      6px
+      11px;
+
+    margin-bottom:18px;
   }
 
 
   h1{
-    letter-spacing:-2px;
+
+    font-size:
+      clamp(
+        38px,
+        13vw,
+        56px
+      );
+
+    letter-spacing:-1.5px;
   }
 
 
   .subtitle{
 
-    font-size:15px;
+    margin-top:18px;
 
-    line-height:1.7;
+    font-size:13px;
+
+    line-height:1.8;
   }
 
 
-  .panel{
+  .music-section{
 
-    padding:20px;
+    padding-bottom:60px;
+  }
 
-    border-radius:20px;
+
+  .player{
+
+    margin-top:-35px;
+
+    padding:18px;
+
+    border-radius:22px;
   }
 
 
   .cover{
 
-    width:60px;
-    height:60px;
+    width:58px;
 
-    font-size:25px;
+    height:58px;
+
+    border-radius:17px;
+
+    font-size:23px;
   }
 
 
-  .song{
-    font-size:17px;
+  .song-title{
+
+    font-size:16px;
   }
 
 
-  .hero-truck{
+  .song-artist{
 
-    font-size:65px;
-
-    bottom:42px;
+    font-size:11px;
   }
 
 
-  .hero-horn{
+  .controls{
 
-    right:5%;
+    gap:10px;
 
-    top:14%;
-
-    font-size:42px;
-
-    opacity:.15;
+    margin-top:20px;
   }
 
 
-  .hero-horn::after{
+  .control{
 
-    left:42px;
+    width:42px;
 
-    font-size:24px;
+    height:42px;
+
+    font-size:15px;
   }
 
 
-  .horn-text{
+  .control.main{
 
-    right:7%;
+    width:55px;
 
-    top:25%;
+    height:55px;
 
-    font-size:9px;
+    font-size:19px;
   }
 
 
-  .hero-road{
-    height:70px;
-  }
+  footer{
 
+    padding-bottom:30px;
 
-  .hero-road::before{
-    top:48px;
-  }
-
-
-  .highway-lights{
-    bottom:72px;
+    font-size:10px;
   }
 
 }
 
 
 /* =========================================================
-   REDUCE MOTION
+   VERY SMALL DEVICES
 ========================================================= */
 
-@media(prefers-reduced-motion:reduce){
+@media(max-width:340px){
 
-  .hero-truck,
-  .hero-horn,
-  .hero-horn::after,
-  .hero-road::before,
-  .highway-lights,
-  body.playing .cover{
+  .hero{
 
-    animation:none;
+    min-height:50vh;
+  }
+
+
+  .player{
+
+    padding:15px;
+  }
+
+
+  .cover{
+
+    width:52px;
+
+    height:52px;
+  }
+
+
+  .song-title{
+
+    font-size:14px;
   }
 
 }
@@ -1141,6 +1045,9 @@ body.playing .cover{
 <body>
 
 
+<div class="page">
+
+
 <!-- =======================================================
      HEADER
 ======================================================= -->
@@ -1148,11 +1055,7 @@ body.playing .cover{
 <header>
 
   <div class="logo">
-
-    HORN
-    <span>OK</span>
-    PLEASE
-
+    हॉर्न <span>ओके</span> प्लीज़
   </div>
 
 
@@ -1160,11 +1063,18 @@ body.playing .cover{
     class="clock"
     id="clock"
   >
-    12:00 am
+    12:00
   </div>
 
 </header>
 
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<main>
 
 
 <!-- =======================================================
@@ -1173,79 +1083,29 @@ body.playing .cover{
 
 <section class="hero">
 
-
-  <!-- Moving truck -->
-
-  <div
-    class="hero-truck"
-    aria-hidden="true"
-  >
-    🚛
-  </div>
-
-
-  <!-- Horn -->
-
-  <div
-    class="hero-horn"
-    aria-hidden="true"
-  >
-    📯
-  </div>
-
-
-  <!-- Horn text -->
-
-  <div
-    class="horn-text"
-    aria-hidden="true"
-  >
-    HORN PLEASE
-  </div>
-
-
-  <!-- Highway road -->
-
-  <div
-    class="hero-road"
-    aria-hidden="true"
-  ></div>
-
-
-  <!-- Highway lights -->
-
-  <div
-    class="highway-lights"
-    aria-hidden="true"
-  ></div>
-
-
-  <!-- Hero content -->
-
   <div class="hero-content">
 
 
     <div class="badge">
-      हाईवे म्यूज़िक
+      सफ़र के साथ संगीत !
     </div>
 
 
     <h1>
 
-      HORN
-      <span>OK</span>
+      हॉर्न
+      <span>ओके</span>
       <br>
-      PLEASE
+      प्लीज़
 
     </h1>
 
 
     <p class="subtitle">
 
-      लंबी हाईवे ड्राइव,
-      सड़क किनारे की चाय
-      और पुराने बॉलीवुड गानों
-      के साथ सफ़र का मज़ा।
+      खुली सड़कें, लंबा सफ़र और
+      पुराने सदाबहार गीत।
+      अपनी यात्रा को संगीत के साथ यादगार बनाइए।
 
     </p>
 
@@ -1256,42 +1116,44 @@ body.playing .cover{
 
 
 <!-- =======================================================
-     MUSIC PLAYER
+     PLAYER
 ======================================================= -->
 
-<section class="music-wrap">
+<section class="music-section">
 
 
   <div
-    class="panel"
+    class="player"
     id="panel"
   >
 
 
-    <div class="now-playing">
+    <!-- Song -->
+
+    <div class="song-info">
 
 
       <div class="cover">
-        🎵
+        ♪
       </div>
 
 
-      <div class="info">
+      <div class="song-details">
 
 
         <div
-          class="song"
+          class="song-title"
           id="song"
         >
-          Mujhse Mohabbat Ka
+          मुझसे मोहब्बत का
         </div>
 
 
         <div
-          class="artist"
+          class="song-artist"
           id="artist"
         >
-          Kumar Sanu
+          कुमार सानू
         </div>
 
       </div>
@@ -1302,7 +1164,7 @@ body.playing .cover{
 
     <!-- Progress -->
 
-    <div class="progress-area">
+    <div class="progress">
 
 
       <div
@@ -1318,7 +1180,7 @@ body.playing .cover{
       </div>
 
 
-      <div class="time-row">
+      <div class="time">
 
         <span id="cur">
           0:00
@@ -1343,7 +1205,7 @@ body.playing .cover{
         class="control"
         id="prev"
         type="button"
-        aria-label="पिछला गाना"
+        aria-label="पिछला गीत"
       >
         ⏮
       </button>
@@ -1353,7 +1215,7 @@ body.playing .cover{
         class="control main"
         id="play"
         type="button"
-        aria-label="गाना चलाएं या रोकें"
+        aria-label="चलाएँ या रोकें"
       >
         ▶
       </button>
@@ -1363,16 +1225,20 @@ body.playing .cover{
         class="control"
         id="next"
         type="button"
-        aria-label="अगला गाना"
+        aria-label="अगला गीत"
       >
         ⏭
       </button>
 
     </div>
 
+
   </div>
 
 </section>
+
+
+</main>
 
 
 
@@ -1382,15 +1248,14 @@ body.playing .cover{
 
 <footer>
 
-  सुरक्षित सफ़र करें।
-  संगीत का आनंद लें। 🚛🎵
+  सुरक्षित सफ़र करें · संगीत का आनंद लें
 
 </footer>
 
 
 
 <!-- =======================================================
-     YOUTUBE PLAYER
+     YOUTUBE
 ======================================================= -->
 
 <div
@@ -1400,109 +1265,112 @@ body.playing .cover{
 ></div>
 
 
+</div>
+
+
 
 <script>
 
 /* =========================================================
-   SONG LIST
+   गीत सूची
 ========================================================= */
 
 const SONGS = [
 
   {
     id:"5MIGQBpVeqs",
-    title:"Mujhse Mohabbat Ka",
-    artist:"Kumar Sanu"
+    title:"मुझसे मोहब्बत का",
+    artist:"कुमार सानू"
   },
 
   {
     id:"Q97LLDLxE98",
-    title:"Tumse Milne Ko Dil",
-    artist:"Alka Yagnik"
+    title:"तुमसे मिलने को दिल",
+    artist:"अलका याग्निक"
   },
 
   {
     id:"O5qahfzGtc8",
-    title:"Jeeta Tha Jiske Liye",
-    artist:"Kumar Sanu"
+    title:"जीता था जिसके लिए",
+    artist:"कुमार सानू"
   },
 
   {
     id:"Mj3KyjuKbqI",
-    title:"Aaye Ho Meri Zindagi Mein",
-    artist:"Udit Narayan"
+    title:"आए हो मेरी ज़िंदगी में",
+    artist:"उदित नारायण"
   },
 
   {
     id:"XOj4ldIWbK8",
-    title:"Tum Dil Ki Dhadkan Mein",
-    artist:"Abhijeet"
+    title:"तुम दिल की धड़कन में",
+    artist:"अभिजीत"
   },
 
   {
     id:"fE4WaKDHBFo",
-    title:"Agar Tum Na Hote",
-    artist:"R.D. Burman"
+    title:"अगर तुम ना होते",
+    artist:"आर. डी. बर्मन"
   },
 
   {
     id:"xxG3XA4fCww",
-    title:"Mere Rang Mein Rangne Wali",
-    artist:"S.P. Balasubrahmanyam"
+    title:"मेरे रंग में रंगने वाली",
+    artist:"एस. पी. बालासुब्रमण्यम"
   },
 
   {
     id:"5EZagydXjNU",
-    title:"Ek Sanam Chahiye Aashiqui Ke Liye",
-    artist:"Kumar Sanu"
+    title:"एक सनम चाहिए आशिकी के लिए",
+    artist:"कुमार सानू"
   },
 
   {
     id:"d7MDzmchS50",
-    title:"Yeh Dil Deewana",
-    artist:"Sonu Nigam"
+    title:"ये दिल दीवाना",
+    artist:"सोनू निगम"
   },
 
   {
     id:"xKb6lP3JxrA",
-    title:"Pardesi Pardesi",
-    artist:"Udit Narayan"
+    title:"परदेसी परदेसी",
+    artist:"उदित नारायण"
   },
 
   {
     id:"fZozVRg1gyE",
-    title:"Chand Se Parda",
-    artist:"Kumar Sanu"
+    title:"चाँद से पर्दा",
+    artist:"कुमार सानू"
   },
 
   {
     id:"ER7RoDTT2_4",
-    title:"Barsaat Ke Mausam Mein",
-    artist:"Kumar Sanu"
+    title:"बरसात के मौसम में",
+    artist:"कुमार सानू"
   },
 
   {
     id:"eLzEykVMZn0",
-    title:"Ae Kash Ke Hum",
-    artist:"Jatin-Lalit"
+    title:"ऐ काश के हम",
+    artist:"जतिन-ललित"
   },
 
   {
     id:"2LFNbp2_NNY",
-    title:"Dil Ke Badle Sanam",
-    artist:"Udit Narayan"
+    title:"दिल के बदले सनम",
+    artist:"उदित नारायण"
   },
 
   {
     id:"qDIQ6HXu5Rg",
-    title:"Aksar Is Duniya Mein",
-    artist:"Alka Yagnik"
+    title:"अक्सर इस दुनिया में",
+    artist:"अलका याग्निक"
   },
 
   {
     id:"IJNR_UVLDhs",
-    title:"Main Nikla Gaddi Leke",
-    artist:"Udit Narayan"
+    title:"मैं निकला गड्डी लेके",
+    artist:"उदित नारायण"
   }
 
 ];
@@ -1521,9 +1389,8 @@ let currentIndex = 0;
 let timer = null;
 
 
-
 /* =========================================================
-   LOAD YOUTUBE IFRAME API
+   YOUTUBE API
 ========================================================= */
 
 function loadYouTubeAPI(){
@@ -1564,14 +1431,11 @@ function loadYouTubeAPI(){
     script.async = true;
 
 
-    document.head.appendChild(
-      script
-    );
+    document.head.appendChild(script);
 
   }
 
 }
-
 
 
 /* =========================================================
@@ -1630,28 +1494,14 @@ function createPlayer(){
 
             updateSong();
 
-
-            document
-              .getElementById("play")
-              .textContent = "▶";
-
-
-            console.log(
-              "YouTube player ready"
-            );
-
           },
 
 
-          onStateChange:function(
-            event
-          ){
+          onStateChange:function(event){
 
             const state =
               event.data;
 
-
-            /* PLAYING */
 
             if(
               state ===
@@ -1672,7 +1522,8 @@ function createPlayer(){
 
               document
                 .getElementById("play")
-                .textContent = "⏸";
+                .textContent =
+                "⏸";
 
 
               startTimer();
@@ -1680,36 +1531,15 @@ function createPlayer(){
             }
 
 
-            /* PAUSED */
-
             else if(
               state ===
               YT.PlayerState.PAUSED
             ){
 
-              document
-                .body
-                .classList
-                .remove("playing");
-
-
-              document
-                .getElementById("panel")
-                .classList
-                .remove("playing");
-
-
-              document
-                .getElementById("play")
-                .textContent = "▶";
-
-
-              stopTimer();
+              stopPlaying();
 
             }
 
-
-            /* ENDED */
 
             else if(
               state ===
@@ -1717,7 +1547,6 @@ function createPlayer(){
             ){
 
               stopTimer();
-
 
               goTo(
                 currentIndex + 1,
@@ -1729,77 +1558,51 @@ function createPlayer(){
           },
 
 
-          /* YOUTUBE ERRORS */
-
-          onError:function(
-            event
-          ){
+          onError:function(event){
 
             const errors = {
 
               2:
-                "Invalid YouTube video ID.",
+                "गीत उपलब्ध नहीं है।",
 
               5:
-                "YouTube HTML5 player error.",
+                "यूट्यूब प्लेयर में समस्या हुई।",
 
               100:
-                "Video unavailable or private.",
+                "यह गीत उपलब्ध या सार्वजनिक नहीं है।",
 
               101:
-                "This video does not allow embedded playback.",
+                "यह गीत इस वेबसाइट पर चलाने की अनुमति नहीं देता।",
 
               150:
-                "This video does not allow embedded playback.",
+                "यह गीत इस वेबसाइट पर चलाने की अनुमति नहीं देता।",
 
               153:
-                "YouTube could not identify the embedding request."
+                "यूट्यूब इस प्लेयर अनुरोध की पहचान नहीं कर सका।"
 
             };
-
-
-            const message =
-              errors[event.data] ||
-              "YouTube playback error.";
 
 
             document
               .getElementById("song")
               .textContent =
-                message;
+              errors[event.data] ||
+              "गीत चलाने में समस्या हुई।";
 
 
             document
               .getElementById("artist")
               .textContent =
-                "YouTube error " +
-                event.data;
+              "यूट्यूब त्रुटि " +
+              event.data;
 
 
-            document
-              .getElementById("play")
-              .textContent = "▶";
-
-
-            document
-              .body
-              .classList
-              .remove("playing");
-
-
-            document
-              .getElementById("panel")
-              .classList
-              .remove("playing");
-
-
-            stopTimer();
+            stopPlaying();
 
 
             console.error(
-              "YouTube error:",
-              event.data,
-              message
+              "YouTube Error:",
+              event.data
             );
 
           }
@@ -1812,9 +1615,37 @@ function createPlayer(){
 }
 
 
+/* =========================================================
+   STOP PLAYING
+========================================================= */
+
+function stopPlaying(){
+
+  document
+    .body
+    .classList
+    .remove("playing");
+
+
+  document
+    .getElementById("panel")
+    .classList
+    .remove("playing");
+
+
+  document
+    .getElementById("play")
+    .textContent =
+    "▶";
+
+
+  stopTimer();
+
+}
+
 
 /* =========================================================
-   UPDATE SONG
+   SONG INFORMATION
 ========================================================= */
 
 function updateSong(){
@@ -1826,35 +1657,34 @@ function updateSong(){
   document
     .getElementById("song")
     .textContent =
-      song.title;
+    song.title;
 
 
   document
     .getElementById("artist")
     .textContent =
-      song.artist;
+    song.artist;
 
 
   document
     .getElementById("cur")
     .textContent =
-      "0:00";
+    "0:00";
 
 
   document
     .getElementById("dur")
     .textContent =
-      "0:00";
+    "0:00";
 
 
   document
     .getElementById("fill")
     .style
     .width =
-      "0%";
+    "0%";
 
 }
-
 
 
 /* =========================================================
@@ -1875,7 +1705,7 @@ document
         document
           .getElementById("song")
           .textContent =
-            "YouTube लोड हो रहा है…";
+          "यूट्यूब लोड हो रहा है…";
 
         return;
       }
@@ -1893,6 +1723,7 @@ document
         player.pauseVideo();
 
         return;
+
       }
 
 
@@ -1910,7 +1741,6 @@ document
 
     }
   );
-
 
 
 /* =========================================================
@@ -1932,7 +1762,6 @@ document
   );
 
 
-
 /* =========================================================
    PREVIOUS
 ========================================================= */
@@ -1950,7 +1779,6 @@ document
 
     }
   );
-
 
 
 /* =========================================================
@@ -1982,6 +1810,7 @@ function goTo(
   ){
 
     return;
+
   }
 
 
@@ -2007,9 +1836,8 @@ function goTo(
 }
 
 
-
 /* =========================================================
-   PROGRESS BAR
+   PROGRESS CLICK
 ========================================================= */
 
 document
@@ -2024,6 +1852,7 @@ document
       ){
 
         return;
+
       }
 
 
@@ -2037,6 +1866,7 @@ document
       ){
 
         return;
+
       }
 
 
@@ -2059,30 +1889,13 @@ document
         );
 
 
-      const time =
-        fraction *
-        duration;
-
-
       player.seekTo(
-        time,
+        fraction * duration,
         true
       );
 
-
-      document
-        .getElementById("fill")
-        .style
-        .width =
-          (
-            fraction *
-            100
-          ) +
-          "%";
-
     }
   );
-
 
 
 /* =========================================================
@@ -2104,6 +1917,7 @@ function startTimer(){
         ){
 
           return;
+
         }
 
 
@@ -2118,35 +1932,27 @@ function startTimer(){
         document
           .getElementById("cur")
           .textContent =
-            formatTime(
-              current
-            );
+          formatTime(current);
 
 
         document
           .getElementById("dur")
           .textContent =
-            formatTime(
-              duration
-            );
+          formatTime(duration);
 
 
-        if(
-          duration > 0
-        ){
+        if(duration > 0){
 
           document
             .getElementById("fill")
             .style
             .width =
-              (
-                (
-                  current /
-                  duration
-                ) *
-                100
-              ) +
-              "%";
+            (
+              current /
+              duration *
+              100
+            ) +
+            "%";
 
         }
 
@@ -2170,9 +1976,11 @@ function stopTimer(){
 }
 
 
-function formatTime(
-  seconds
-){
+/* =========================================================
+   TIME FORMAT
+========================================================= */
+
+function formatTime(seconds){
 
   seconds =
     Math.floor(
@@ -2204,7 +2012,6 @@ function formatTime(
 }
 
 
-
 /* =========================================================
    CLOCK
 ========================================================= */
@@ -2212,25 +2019,20 @@ function formatTime(
 function updateClock(){
 
   const clock =
-    document
-      .getElementById("clock");
-
-
-  if(!clock){
-    return;
-  }
+    document.getElementById(
+      "clock"
+    );
 
 
   clock.textContent =
     new Date()
       .toLocaleTimeString(
-        "en-IN",
+        "hi-IN",
         {
           hour:"numeric",
           minute:"2-digit"
         }
-      )
-      .toLowerCase();
+      );
 
 }
 
@@ -2244,9 +2046,8 @@ setInterval(
 );
 
 
-
 /* =========================================================
-   START YOUTUBE
+   START
 ========================================================= */
 
 loadYouTubeAPI();
