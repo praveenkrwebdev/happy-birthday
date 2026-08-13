@@ -129,7 +129,7 @@
     header{padding:14px 16px}
   }
 </style>
-<script src="https://www.youtube.com/iframe_api"></script><style>
+<style>
   .imageye-selected {
     outline: 2px solid black !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
@@ -148,7 +148,7 @@
 </header>
 
 <div class="title">
-  <h1>हॉर्न ओके<br>प्लीज़</h1>
+  <h1>हॉर्न ओके<br>प्लीज़ !!</h1>
   <p>Songs that play in Indian trucks. Night highway. Dhaba chai. Full volume.</p>
 </div>
 
@@ -157,7 +157,7 @@
   <div class="hop">HORN <span>OK</span> PLEASE</div>
   <div class="row">
     <div class="yt-screen">
-      <iframe id="yt" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Mujhse Mohabbat Ka" width="640" height="360" src="https://www.youtube.com/embed/rqEjOLu105I?controls=0&amp;disablekb=1&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fwww.truckplaylist.wtf&amp;widgetid=1&amp;forigin=https%3A%2F%2Fwww.truckplaylist.wtf%2F&amp;aoriginsup=1&amp;gporigin=https%3A%2F%2Fwww.google.com%2F&amp;vf=6" data-gtm-yt-inspected-11="true"></iframe>
+      <iframe id="yt" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="YouTube player"></iframe>
     </div>
     <div class="meta">
       <div class="song" id="song">Mujhse Mohabbat Ka</div>
@@ -187,7 +187,7 @@
    11-character ID from the URL, and add an entry. */
 
 const SONGS = [
-  { id: "rqEjOLu105I", title: "Bahut Pyar Karte Hai",          artist: "S.P. Balasubramaniam" },
+  { id: "9nx09wvQvNE", title: "Horn OK Please — Highway Mix", artist: "YouTube" },
   { id: "5MIGQBpVeqs", title: "Mujhse Mohabbat Ka",            artist: "Kumar Sanu" },
   { id: "Q97LLDLxE98", title: "Tumse Milne Ko Dil",            artist: "Alka Yagnik" },
   { id: "O5qahfzGtc8", title: "Jeeta Tha Jiske Liye",          artist: "Kumar Sanu" },
@@ -212,10 +212,12 @@ let player, ready = false, timer;
 let currentIndex = 0;
 let started = false;
 
-// load YouTube IFrame API
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-document.head.appendChild(tag);
+// Load YouTube IFrame API once.
+if (!window.YT || !window.YT.Player) {
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+}
 
 function onYouTubeIframeAPIReady(){
   player = new YT.Player('yt', {
@@ -225,7 +227,9 @@ function onYouTubeIframeAPIReady(){
       disablekb: 1,
       playsinline: 1,
       rel: 0,
-      modestbranding: 1
+      modestbranding: 1,
+      enablejsapi: 1,
+      origin: window.location.origin
     },
     events:{
       onReady: () => {
@@ -233,10 +237,21 @@ function onYouTubeIframeAPIReady(){
         updateDisplay();
       },
       onError: e => {
-        // skip to next song if this one is blocked
-        document.getElementById('song').textContent = 'Skipping blocked song…';
-        document.getElementById('artist').textContent = '';
-        setTimeout(() => goTo(currentIndex + 1), 1000);
+        const errors = {
+          2: 'Invalid YouTube video ID.',
+          5: 'YouTube HTML5 player error.',
+          100: 'This YouTube video is unavailable or private.',
+          101: 'This video does not allow embedded playback.',
+          150: 'This video does not allow embedded playback.'
+        };
+
+        const message = errors[e.data] || 'YouTube playback error.';
+        document.getElementById('song').textContent = message;
+        document.getElementById('artist').textContent = 'Try another YouTube video.';
+        document.getElementById('play').textContent = '▶';
+        document.body.classList.remove('playing');
+        document.getElementById('panel').classList.remove('playing');
+        console.error('YouTube Player Error:', e.data);
       },
       onStateChange: e => {
         const state = e.data;
@@ -283,17 +298,24 @@ function goTo(index){
 }
 
 document.getElementById('play').onclick = () => {
-  if (!ready) return;
+  if (!ready || !player) {
+    document.getElementById('song').textContent = 'YouTube is loading…';
+    return;
+  }
+
   const st = player.getPlayerState();
+
   if (st === YT.PlayerState.PLAYING) {
     player.pauseVideo();
-  } else {
-    if (!started) {
-      player.loadVideoById(SONGS[currentIndex].id);
-    } else {
-      player.playVideo();
-    }
+    return;
   }
+
+  player.loadVideoById({
+    videoId: SONGS[currentIndex].id,
+    startSeconds: 0
+  });
+
+  player.playVideo();
 };
 
 document.getElementById('next').onclick = () => goTo(currentIndex + 1);
