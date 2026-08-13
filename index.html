@@ -862,7 +862,6 @@ h1 span{
 ========================================================= */
 
 footer{
-
   text-align:center;
 
   padding:
@@ -874,6 +873,59 @@ footer{
     rgba(255,255,255,.30);
 
   font-size:11px;
+
+  line-height:2;
+}
+
+.made-by{
+  margin-top:5px;
+
+  color:
+    rgba(255,255,255,.45);
+}
+
+.heart{
+  color:#ff4d6d;
+
+  display:inline-block;
+
+  margin:
+    0
+    3px;
+
+  animation:
+    heartBeat
+    1.4s
+    ease-in-out
+    infinite;
+}
+
+.made-by a{
+  color:#fff;
+
+  text-decoration:none;
+
+  font-weight:700;
+
+  transition:
+    color .2s ease;
+}
+
+.made-by a:hover{
+  color:#ff7a00;
+}
+
+@keyframes heartBeat{
+
+  0%,
+  100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.18);
+  }
+
 }
 
 
@@ -1361,7 +1413,21 @@ footer{
 
 <footer>
 
-  सुरक्षित सफ़र करें · संगीत का आनंद लें
+  <div>
+    सुरक्षित सफ़र करें · संगीत का आनंद लें
+  </div>
+
+  <div class="made-by">
+    प्यार से बनाया गया
+    <span class="heart">♥</span>
+    <a
+      href="https://artsbypraveen.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Praveen
+    </a>
+  </div>
 
 </footer>
 
